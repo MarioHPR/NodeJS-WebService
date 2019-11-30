@@ -1,0 +1,57 @@
+extends ../layout/layoutoff
+
+block content
+  h1 Cadastro usuário
+  form(method='POST' action='/usuario' class="form-signin")
+  
+    label(for="nome") Nome completo:
+    input(
+      type='text'
+      name='nome'
+      placeholder='Nome Completo'
+      class="form-control"
+      required
+    )
+
+    label(for="dataNascimento") Data Nascimento:
+      input(
+          type='date'
+          name='dataNascimento'
+          class="form-control"
+          required
+      )
+
+    label(for="cpf") CPF:
+      input(
+        type='text'
+        name='cpf'
+        placeholder='Digite seu cpf'
+        class="form-control"
+        required
+      )
+
+    label(for="usuario") Login:
+      input(
+        type='text'
+        name='usuario'
+        placeholder='Digite usuário para login'
+        class="input-group-text"
+        required
+      )
+
+    label(for="senha") Senha:
+      input(
+        type='password'
+        name='senha'
+        placeholder='Digite sua senha'
+        class="input-group-text"
+        required
+    )
+    div(class="btn-group btn-group-toggle" data-toggle="buttons")
+      input(
+          type='submit'
+          name='Cadastrar'
+          value='Cadastrar'
+          class="btn btn-outline-primary"
+        )
+      a(class="btn btn-outline-warning" href='/') Voltar
