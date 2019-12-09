@@ -33,6 +33,10 @@ router.get('/login', function (req, res, next) {
   res.render('usuario/login');
 });
 
+router.get('/consulta', function (req, res, next) {
+  res.render('usuario/consulta');
+});
+
 router.post('/login', function (req, res, next) {
   axios.post('http://localhost:3000/login', {
     login: req.body.login,

@@ -9,6 +9,7 @@ router.post('/', function (req, res, next) {
     let instituicao = [];
     instituicao.push(req.body.nome);
     instituicao.push(req.body.id_local);
+    const connection = mysql.createConnection(consMysql);
     var sql = "INSERT INTO Instituicao (nome,id_local) VALUES (?,?)";
     connection.query(sql, instituicao, function (error, result) {
         if (error) {

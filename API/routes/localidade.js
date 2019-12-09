@@ -6,12 +6,14 @@ var mysql = require('mysql');
 var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
 
 router.post('/', function (req, res, next) {
+    console.log("entrou no axios local");
     let local = [];
     local.push(req.body.cidade);
     local.push(req.body.cep);
     local.push(req.body.bairro);
     local.push(req.body.rua);
     local.push(req.body.numero);
+    const connection = mysql.createConnection(consMysql);
     var sql = "INSERT INTO Localidade (cidade,cep,bairro,rua,numero) VALUES (?,?,?,?,?)";
     connection.query(sql, local, function (error, result) {
         if (error) {

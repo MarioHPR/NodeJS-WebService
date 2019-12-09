@@ -1,0 +1,54 @@
+extends ../layout/layout
+
+block content
+  h1 Cadastrar consulta
+  
+  form(method='POST' action='/consulta' class="form-signin")
+    label(for="diagnostico") Diagnóstico:
+      input(
+        type='text'
+        name='diagnostico'
+        placeholder='Digite diagnóstico'
+        class="form-control"
+        required
+      )
+    label(for="prescricao") Prescrição:
+      input(
+        type='text'
+        name='prescricao'
+        class="form-control"
+        placeholder='Digite a prescrição'
+        required
+      )
+    label(for="nome_medico") nome médico:
+      input(
+        type='text'
+        name='nome_medico'
+        placeholder='Digite nome médico'
+        class="form-control"
+        required
+      )
+    label(for="id_usuario") id usuário:
+      input(
+        type='text'
+        name='id_usuario'
+        placeholder='Digite id usuário'
+        class="input-group-text"
+        required
+      )
+    label(for="id_instituicao") id instituição:
+      input(
+        type='text'
+        name='id_instituicao'
+        placeholder='Digite id instituição'
+        class="input-group-text"
+        required
+      )
+    
+    input(
+        type='submit'
+        name='Cadastrar'
+        value='Cadastrar'
+        class="btn btn-outline-primary"
+      )
+    a(class="btn btn-outline-warning" href='/') Voltar

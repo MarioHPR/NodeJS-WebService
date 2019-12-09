@@ -6,12 +6,14 @@ var mysql = require('mysql');
 var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
 
 router.post('/', function (req, res, next) {
+	
 	let consulta = [];
 	consulta.push(req.body.diagnostico);
 	consulta.push(req.body.prescricao);
 	consulta.push(req.body.nome_medico);
 	consulta.push(req.body.id_usuario);
 	consulta.push(req.body.id_instituicao);
+	const connection = mysql.createConnection(consMysql);
 	var sql = "INSERT INTO Consulta (diagnostico,prescricao,nome_medico,id_usuario,id_instituicao) VALUES (?,?,?,?,?)";
 	connection.query(sql, consulta, function (error, result) {
 		if (error) {
