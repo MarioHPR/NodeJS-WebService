@@ -1,9 +1,9 @@
 var express = require('express');
-var router = express.Router();
-var axios = require('axios');
+var router  = express.Router();
+var axios   = require('axios');
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('/instituicao');
+    res.render('instituicao');
 });
 /* GET users listing. */
 router.post('/', function (req, res, next) {
