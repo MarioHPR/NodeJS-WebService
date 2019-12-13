@@ -5,6 +5,23 @@ var app = express();
 var mysql = require('mysql');
 var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
 
+router.get('/', function (req, res, next) {
+    console.log("entrou: " + req.query.id);
+    let id  = req.query.id;
+    const connection = mysql.createConnection(consMysql);
+    var sql = 'SELECT * FROM Instituicao WHERE id_usuario = ?';
+    connection.query(sql,id, function (error, results, fields) {
+        console.log(results);
+        if (error) {
+            console.log(error);
+            return res.status(304).end();
+        }
+        console.log("aquiiiiiiiiiiiiii: " + results);
+        return res.status(200).json(results);
+    });
+    
+});
+
 router.post('/', function (req, res, next) {
     let instituicao = [];
     instituicao.push(req.body.nome);
