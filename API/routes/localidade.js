@@ -5,6 +5,8 @@ var app = express();
 var mysql = require('mysql');
 var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
 
+
+
 router.post('/', function (req, res, next) {
     console.log("entrou no axios local");
     let local = [];

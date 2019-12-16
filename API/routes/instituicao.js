@@ -19,7 +19,6 @@ router.get('/', function (req, res, next) {
         console.log("aquiiiiiiiiiiiiii: " + results);
         return res.status(200).json(results);
     });
-    
 });
 
 router.post('/', function (req, res, next) {
