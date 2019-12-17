@@ -8,27 +8,23 @@ var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
 router.get('/', function (req, res, next) {
 	var sql;
 	let aux;
-	console.log("ENTROU ISSO : "+req.query.id);
 	if (req.query.id) {
 		aux = req.query.id;
-		sql = "SELECT * FROM Consulta WHERE id_usuario = ?";
-	} else
+		sql = "SELECT * FROM Consulta WHERE id_usuario = ? ORDER BY diagnostico";
+	} else{
 		if (req.query.nome) {
 			aux = req.query.nome;
 			sql = "SELECT * FROM Consulta WHERE nome LIKE ? ";
 		}
-		else {
-			sql = "SELECT * FROM Consulta ORDER BY nome";
-		}
+	}
 	const connection = mysql.createConnection(consMysql);
-	connection.connect();
 	connection.query(sql, aux, function (error, results) {
-		console.log(results);
+		
 		if (error) {
 			console.log(error);
 			return res.status(304).end();
 		}
-		console.log("aquiiiiiiiiiiiiii: " + results);
+		console.log(results);
 		return res.status(200).json(results);
 	});
 });
