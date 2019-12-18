@@ -8,7 +8,6 @@ var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
 
 
 router.post('/', function (req, res, next) {
-    console.log("entrou no axios local");
     let local = [];
     local.push(req.body.cidade);
     local.push(req.body.cep);
@@ -22,9 +21,9 @@ router.post('/', function (req, res, next) {
             console.log(error)
             return res.status(304).end();
         }
-        let resposta = { id: result.insertId };
+        let resposta = {"id": ""+result.insertId};
         console.log(resposta);
-        return res.status(201).json(resposta);
+        return res.status(200).json(resposta);
     });
 });
 

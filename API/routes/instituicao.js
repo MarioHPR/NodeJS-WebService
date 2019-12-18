@@ -11,28 +11,32 @@ router.get('/', function (req, res, next) {
     const connection = mysql.createConnection(consMysql);
     var sql = 'SELECT * FROM Instituicao WHERE id_usuario = ?';
     connection.query(sql,id, function (error, results, fields) {
-        console.log(results);
+        //console.log(results);
         if (error) {
             console.log(error);
             return res.status(304).end();
         }
-        console.log("aquiiiiiiiiiiiiii: " + results);
+        //console.log("aquiiiiiiiiiiiiii: " + results);
         return res.status(200).json(results);
     });
 });
 
 router.post('/', function (req, res, next) {
+    console.log(req.body.nome);
+    console.log(req.body.id_local);
+    console.log(req.body.id_usuario);
     let instituicao = [];
     instituicao.push(req.body.nome);
     instituicao.push(req.body.id_local);
+    instituicao.push(req.body.id_usuario);
     const connection = mysql.createConnection(consMysql);
-    var sql = "INSERT INTO Instituicao (nome,id_local) VALUES (?,?)";
+    var sql = "INSERT INTO Instituicao (nome,id_local,id_usuario) VALUES (?,?,?)";
     connection.query(sql, instituicao, function (error, result) {
         if (error) {
             console.log(error)
             return res.status(304).end();
         }
-        let resposta = { id: result.insertId };
+        let resposta = { "id": result.insertId };
         console.log(resposta);
         return res.status(201).json(resposta);
     });
