@@ -1,0 +1,16 @@
+extends ../layout/layout
+
+block content
+  h1.h3.mb-0.text-gray-800  Exames
+  
+  .container
+      .row
+        each item in exames
+          .card.mb-1
+            .card-body
+              h5.card-title= item.nome_exame
+              .card-text
+                a(href="#" class="btn btn-primary") Visualizar
+
+  a( id="add" class="mt-auto p-2 bd-highlight" href='exame/add')
+    img(src="/images/add.png" alt="csdsdfs" width="100px")

@@ -11,6 +11,7 @@ var indexRouter     = require('./routes/index');
 var consultasRouter   = require('./routes/consulta');
 var instituicaoRouter = require('./routes/instituicao');
 var localRouter       = require('./routes/local');
+var exameRouter       = require('./routes/exame');
 
 var app = express();
 
@@ -22,8 +23,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+//app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/usuario', usuarioRouter);
 app.use('/', indexRouter);
 
@@ -31,6 +32,7 @@ app.use('/', indexRouter);
 app.use('/consulta', consultasRouter);
 app.use('/instituicao', instituicaoRouter);
 app.use('/local', localRouter);
+app.use('/exame', exameRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

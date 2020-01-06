@@ -1,0 +1,12 @@
+extends ../layout/layout
+
+block content
+  div
+    h1 Cadastrar Exame
+  div
+    form(action='' method='post')
+      div(id='myTable' )
+        input(type='text' name='A0' placeholder='1 Atributo')
+        label = 
+        input(type='text' name='b0' placeholder='1 Valor')
+        input(type='button' onclick='adicionarCampos()' value=' + ' )
