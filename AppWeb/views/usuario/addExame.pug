@@ -4,9 +4,36 @@ block content
   div
     h1 Cadastrar Exame
   div
-    form(action='' method='post')
-      div(id='myTable' )
-        input(type='text' name='A0' placeholder='1 Atributo')
-        label = 
-        input(type='text' name='b0' placeholder='1 Valor')
-        input(type='button' onclick='adicionarCampos()' value=' + ' )
+    div(id='formInstituicao' class="form-row")
+      block teste
+        div(  class="modal fade" id="adicaoInstituicao"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+          div(class="modal-dialog modal-lg")
+            div(class="modal-content")
+              include ../instituicao
+      form( name='testeLoko' class="form-signin" method='POST' action='/exame')
+        label(for="seletor" class="my-1 mr-2") Selecione a instituição que foi realizado o exame
+        select(name="seletor" id="seletor" class="custom-select my-1 mr-sm-2")
+          option(selected) Selecione a instituição
+          each item in inst
+            option(value=item.id)= item.nome
+
+        input(type='button' data-toggle="modal" data-target="#adicaoInstituicao" value='Adicionar outro local' id='btAddInst')
+        br
+
+        h1 Dados do exame
+        div(id='myTable')
+          input(type='text' name='A0' placeholder='1 Atributo')
+          label = 
+          input(type='text' name='V0' placeholder='1 Valor')
+          input(type='button' onclick='adicionarCampos()' value=' + ' )
+
+        input(type='hidden' name='MAX_FILE_SIZE' value='4194304')
+        input(type='file' name='arquivo')
+        br
+
+        input(
+          type='submit'
+          name='cadastrar'
+          value='cadastrar'
+          class="btn btn-lg btn-primary btn-block"
+        )

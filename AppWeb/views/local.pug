@@ -1,52 +1,41 @@
-extends ./layout/layout
+block teste1
+  label(for="cidade") Nome cidade:
+  input(
+    type='text'
+    name='cidade'
+    placeholder='Nome cidade'
+    class="form-control"
+    required
+  )
 
-block content
-  h1 Cadastro localidade
-  form(method='POST' action='/local' class="form-signin")
+  label(for="cep") Cep:
     input(
-        type='submit'
-        name='Cadastrar'
-        value='Cadastrar'
-        class="btn btn-outline-primary"
+        type='text'
+        name='cep'
+        placeholder='96700-000'
+        class="form-control"
     )
-    label(for="cidade") Nome cidade:
+
+  label(for="bairro") Bairro:
     input(
       type='text'
-      name='cidade'
-      placeholder='Nome cidade'
+      name='bairro'
+      placeholder='Digite o bairro'
       class="form-control"
-      required
     )
 
-    label(for="cep") Cep:
-      input(
-          type='text'
-          name='cep'
-          placeholder='96700-000'
-          class="form-control"
-      )
-
-    label(for="bairro") Bairro:
-      input(
-        type='text'
-        name='bairro'
-        placeholder='Digite o bairro'
-        class="form-control"
-      )
-
-    label(for="rua") rua:
-      input(
-        type='text'
-        name='rua'
-        placeholder='Digite a rua'
-        class="input-group-text"
-      )
-
-    label(for="numero") numero:
-      input(
-        type='text'
-        name='numero'
-        placeholder='Digite o numero'
-        class="input-group-text"
+  label(for="rua") rua:
+    input(
+      type='text'
+      name='rua'
+      placeholder='Digite a rua'
+      class="input-group-text"
     )
-    
+
+  label(for="numero") numero:
+    input(
+      type='text'
+      name='numero'
+      placeholder='Digite o numero'
+      class="input-group-text"
+    )

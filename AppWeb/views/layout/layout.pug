@@ -13,6 +13,7 @@ html(lang='en')
 		// Custom styles for this template
 		link(href='/css/sb-admin-2.min.css', rel='stylesheet')
 		style(type='text/css').
+			
 			#myTable{
 				text-align: center;
 				width: 500px;
@@ -24,50 +25,9 @@ html(lang='en')
 			}
 			h1{
 				text-align: center;
-				border: solid 3px;
 				width: 100%;
 			}
-		script(type='text/javascript').
-						var i=1;
-						function excluirLinha(j){
-						if(((j+1) == i)){
-							var element = this.document.getElementById("myTable");
-							var child=this.document.getElementById("l"+j);
-							element.removeChild(child);
-							--i;
-						}
-						else{
-							alert("Remover debaixo para cima!!");
-						}
-						}
-						function adicionarCampos(){
-							var input,input2,excluir, linha;
-							var x=this.document.getElementById('myTable');
-
-							linha = this.document.createElement("div");
-							linha.id = "l"+i;
-
-							excluir = this.document.createElement("input");
-							excluir.type = "button";
-							excluir.setAttribute('onclick', "excluirLinha("+i+")");
-							excluir.value = " X ";
-							excluir.id = "x"+i;
-
-							input = this.document.createElement("input");
-							input.placeholder = (i+1) + " Atributo";
-							input.id = "A"+i;
-
-							input2 = this.document.createElement("input");
-							input2.placeholder = (i+1) + " Valor";
-							input2.id = "V"+i;
-
-							linha.append(input);
-							linha.append(" = ");
-							linha.append(input2);
-							linha.append(excluir);
-							x.append(linha);
-							i++;
-						}
+		script(type='text/javascript' src='/js/camposExtras.js').
 		
 	body#page-top
 		// Page Wrapper
@@ -179,7 +139,7 @@ html(lang='en')
 					.container-fluid
 						// Page Heading
 						.justify-content-between.mb-4
-							//h1.h3.mb-0.text-gray-800 
+							//h1.h3.mb-0.text-gray-800 							
 							block content
 					// Footer
 					footer
@@ -208,8 +168,8 @@ html(lang='en')
 					script(src='/vendor/jquery-easing/jquery.easing.min.js')
 					// Custom scripts for all pages
 					script(src='/js/sb-admin-2.min.js')
-					// Page level plugins
-					script(src='/vendor/chart.js/Chart.min.js')
+					//	 Page level plugins
+					//script(src='/vendor/chart.js/Chart.min.js')
 					// Page level custom scripts
-					script(src='/js/demo/chart-area-demo.js')
-					script(src='/js/demo/chart-pie-demo.js')
+					//script(src='/js/demo/chart-area-demo.js')
+					//script(src='/js/demo/chart-pie-demo.js')

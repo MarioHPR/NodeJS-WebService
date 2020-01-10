@@ -6,19 +6,20 @@ var mysql = require('mysql');
 var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
 
 router.get('/', function (req, res, next) {
-    console.log("entrou: " + req.query.id);
-    let id  = req.query.id;
-    const connection = mysql.createConnection(consMysql);
+    console.log("entrou aqui na instituicao");
     var sql = 'SELECT * FROM Instituicao WHERE id_usuario = ?';
-    connection.query(sql,id, function (error, results, fields) {
-        //console.log(results);
+
+    const connection = mysql.createConnection(consMysql);
+    connection.connect();
+    connection.query(sql, [req.query.id_usuario], function (error, results) {
         if (error) {
             console.log(error);
             return res.status(304).end();
         }
-        //console.log("aquiiiiiiiiiiiiii: " + results);
+        console.log(results);
         return res.status(200).json(results);
     });
+    connection.end();
 });
 
 router.post('/', function (req, res, next) {

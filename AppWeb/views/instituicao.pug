@@ -1,6 +1,5 @@
-extends ./layout/layout
-
-block content
+block teste
+  script(type='text/javascript' src='/js/camposExtras.js').
   h1 Cadastro instituição
   form(class="form-signin" method='POST' action='/instituicao')
     input(
@@ -11,16 +10,13 @@ block content
       autofocus
     )
     p
-      input(
-        type='text'
-        name='id_local'
-        placeholder='id_local'
-        class="form-control"
-      )
+      block teste1
+        include ./local
     p
       input(
         type='submit'
-        name='logar'
+        name='cad'
         value='cadastrar'
         class="btn btn-lg btn-primary btn-block"
       )
+      button(type="button" class="btn btn-secondary" data-dismiss="modal" onclick='atualizaCampo()') Fechar

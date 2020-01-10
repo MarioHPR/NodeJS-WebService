@@ -5,9 +5,8 @@ var app = express();
 var mysql = require('mysql');
 var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
 
-/* GET home page. */
+/* GET home page. */ 
 router.get('/', function (req, res, next) {
-	console.log("entrou");
 	var sql = 'SELECT nome_exame FROM Exames WHERE id_usuario = ?;';
 
 	const connection = mysql.createConnection(consMysql);
@@ -16,8 +15,7 @@ router.get('/', function (req, res, next) {
 		if (error) {
 			return res.status(304).end();
 		}
-		console.log(results.nome_exame);
-		return res.status(201).json(results);
+		return res.status(200).json(results);
 	});
 	connection.end();
 });

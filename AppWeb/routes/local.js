@@ -16,8 +16,6 @@ router.post('/', function (req, res, next) {
         numero : req.body.numero
     }).then(function (response) {
         console.log(response.data); // ex.: { user: 'Your User'}
-        if (response.status == 201)
-            res.redirect("/")
     });
     // acessar a api enviando os dados
     // if (ok da api)

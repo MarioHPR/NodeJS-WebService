@@ -22,9 +22,10 @@ router.post('/', function (req, res, next) {
             return res.status(304).end();
         }
         let resposta = {"id": ""+result.insertId};
-        console.log(resposta);
+
         return res.status(200).json(resposta);
     });
+    connection.end();
 });
 
 router.delete('/:id', function (req, res, next) {

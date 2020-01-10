@@ -6,20 +6,20 @@ router.get('/', function (req, res, next) {
     res.render('instituicao');
 });
 /* GET users listing. */
-router.post('/', function (req, res, next) {
-    console.log("aqui");
-    axios.post('http://localhost:3000/instituicao', {
-        nome     : req.body.nome,
-        id_local : req.body.id_local
+router.post('/', function (req, res, next) { 
+    console.log("entrou aqui na inst");
+    var id_localidade;
+    axios.post('http://localhost:3000/localidade/', {
+        cidade : req.body.cidade, 
+        cep    : req.body.cep,
+        bairro : req.body.bairro,
+        rua    : req.body.rua,
+        numero : req.body.numero
     }).then(function (response) {
-        console.log(response.data); // ex.: { user: 'Your User'}
-        if (response.status == 201)
-            res.redirect("/")
+        if (response.status == 200){
+            console.log(response.data);
+        }
     });
-    // acessar a api enviando os dados
-    // if (ok da api)
-
-    //	res.render('cadastrado');
 });
 
 // deletar
