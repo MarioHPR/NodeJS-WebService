@@ -16,19 +16,20 @@ block content
           option(selected) Selecione a instituição
           each item in inst
             option(value=item.id)= item.nome
-
-        input(type='button' data-toggle="modal" data-target="#adicaoInstituicao" value='Adicionar outro local' id='btAddInst')
-        br
+        p
+          input(type='button' data-toggle="modal" data-target="#adicaoInstituicao" value='Adicionar outro local' id='btAddInst')
 
         h1 Dados do exame
-        div(id='myTable')
+        p
+          input(class="form-control" type='text' name='nome' placeholder='Nome do exame')
+        div(id='myTable' class="text-center")
           input(type='text' name='A0' placeholder='1 Atributo')
           label = 
           input(type='text' name='V0' placeholder='1 Valor')
           input(type='button' onclick='adicionarCampos()' value=' + ' )
-
-        input(type='hidden' name='MAX_FILE_SIZE' value='4194304')
-        input(type='file' name='arquivo')
+        div(class="form-group")
+          label(for="arq") Anexar arquivo
+          input(id="arq" name="anexo" type="file" class="form-control-file")
         br
 
         input(

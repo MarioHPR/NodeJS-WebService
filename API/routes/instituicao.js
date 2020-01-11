@@ -39,7 +39,7 @@ router.post('/', function (req, res, next) {
         }
         let resposta = { "id": result.insertId };
         console.log(resposta);
-        return res.status(201).json(resposta);
+        return res.status(200).json(resposta);
     });
 });
 

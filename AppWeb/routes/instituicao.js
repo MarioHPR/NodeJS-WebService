@@ -17,9 +17,21 @@ router.post('/', function (req, res, next) {
         numero : req.body.numero
     }).then(function (response) {
         if (response.status == 200){
-            console.log(response.data);
+            id_localidade = response.data;
+            console.log(id_localidade);
+            axios.post('http://localhost:3000/instituicao/', {
+                nome: req.body.nome,
+                id_local: id_localidade.id,
+                id_usuario: 1
+            }).then(function (response) {
+                if (response.status == 200) {
+                    console.log(response.data);
+                }
+            });
         }
     });
+    
+   /* */
 });
 
 // deletar
