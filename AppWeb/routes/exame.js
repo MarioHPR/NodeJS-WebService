@@ -1,6 +1,12 @@
 var express = require('express');
-var router = express.Router();
-var axios = require('axios');
+var router  = express.Router();
+var axios   = require('axios');
+var multer  = require('multer');
+var multerConfig = require('./config/multer'); 
+
+var FormData = require('form-data');
+var fs = require('fs');
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) { 
@@ -31,11 +37,15 @@ router.get('/add', function (req, res, next) {
     }).catch(error => { });
 });
 
-router.post('/', function (req, res, next) {
-    console.log(req.body);
-    /*axios.get('http://localhost:3000/exames', {
+router.post('/', multer(multerConfig).single('file'),  function (req, res) {
+    console.log(req.file);
+    console.log(JSON.stringify(req.body));
+    /*axios.post('http://localhost:3000/exames', {
         params: {
-            id_usuario: 1
+            nome: req.body.name,
+            id_usuario: 1,
+            id_instituicao: req.body.seletor,
+            link : req.file.path
         }
     }).then(function (response) {
         if (response.status == 200) {
@@ -43,8 +53,20 @@ router.post('/', function (req, res, next) {
             res.render('usuario/exame', { exames: response.data });
         }
     }).catch(error => { });*/
+/*
+    axios.post('http://localhost:3000/parametros', {
+        params: {
+            nome: req.body.name,
+            id_usuario: 1,
+            id_instituicao: req.body.seletor,
+            link: req.file.path
+        }
+    }).then(function (response) {
+        if (response.status == 200) {
+            console.log(response.data);
+            res.render('usuario/exame', { exames: response.data });
+        }
+    }).catch(error => { });
+*/
 });
-
-
-
 module.exports = router;

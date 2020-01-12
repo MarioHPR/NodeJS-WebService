@@ -8,15 +8,16 @@ var usuarioRouter = require('./routes/usuario');
 var loginRouter = require('./routes/login');
 
 var instituicaoRouter = require('./routes/instituicao');
-var localRouter = require('./routes/localidade');
-var exameRouter = require('./routes/exames');
-var consultaRouter = require('./routes/consultas');
+var localRouter       = require('./routes/localidade');
+var exameRouter       = require('./routes/exames');
+var consultaRouter    = require('./routes/consultas');
+var parametrosRouter  = require('./routes/parametros');
 
 var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -27,6 +28,7 @@ app.use('/instituicao', instituicaoRouter);
 app.use('/localidade', localRouter);
 app.use('/exames', exameRouter);
 app.use('/consultas', consultaRouter);
+app.use('/parametros', parametrosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

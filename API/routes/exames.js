@@ -20,8 +20,9 @@ router.get('/', function (req, res, next) {
 	connection.end();
 });
 
-router.post('/',  function(req,res,next) {
-	let usuario =[];
+router.post('/', function(req,res) {
+	console.log(req.body);
+	/*let usuario =[];
 	const connection = mysql.createConnection(consMysql);
     let aux = JSON.stringify(req.body.arquivo);
 	console.log(aux);
@@ -38,7 +39,8 @@ router.post('/',  function(req,res,next) {
 		let resposta = { id: result.insertId };
 		console.log(resposta);
 		return res.status(201).json(resposta);
-	});
+	});*/
+	
 });
 
 router.delete('/:id', function(req,res,next) {
