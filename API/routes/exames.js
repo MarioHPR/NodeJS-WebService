@@ -22,15 +22,14 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function(req,res) {
 	console.log(req.body);
-	/*let usuario =[];
+	let usuario =[];
 	const connection = mysql.createConnection(consMysql);
-    let aux = JSON.stringify(req.body.arquivo);
-	console.log(aux);
-	usuario.push(req.body.instituicao);
-	usuario.push(req.body.nome_exame);
-	usuario.push(req.body.id_local);
-	usuario.push(aux);	
-	var sql = "INSERT INTO Exames (instituicao,nome_exame,id_local) VALUES (?,?,?)";
+	
+	usuario.push(req.body.nome);
+	usuario.push(req.body.id_usuario);
+	usuario.push(req.body.id_instituicao);
+	usuario.push(req.body.link);	
+	var sql = "INSERT INTO Exames (nome_exame,id_usuario,id_instituicao,linkImage) VALUES (?,?,?,?)";
 	connection.query(sql, usuario, function(error, result){
 		if (error) {
 			console.log(error)
@@ -38,8 +37,8 @@ router.post('/', function(req,res) {
 		}	
 		let resposta = { id: result.insertId };
 		console.log(resposta);
-		return res.status(201).json(resposta);
-	});*/
+		return res.status(200).json(resposta);
+	});
 	
 });
 
