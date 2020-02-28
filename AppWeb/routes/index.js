@@ -4,6 +4,7 @@ var axios   = require('axios');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
     res.render('index');
 });
 

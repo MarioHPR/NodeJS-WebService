@@ -18,7 +18,6 @@ block content
             option(value=item.id)= item.nome
         p
           input(type='button' data-toggle="modal" data-target="#adicaoInstituicao" value='Adicionar outro local' id='btAddInst')
-
         h1 Dados do exame
         p
           input(class="form-control" type='text' name='nome' placeholder='Nome do exame')
@@ -26,12 +25,11 @@ block content
           input(type='text' name='A0' placeholder='1 Atributo')
           label = 
           input(type='text' name='V0' placeholder='1 Valor')
-          input(type='button' onclick='adicionarCampos()' value=' + ' )
+          input(type='button' onclick='adicionarCampos(0)' value=' + ' )
         div(class="form-group")
           label(for="arq") Anexar arquivo
           input(id="arq" name="file" type="file" class="form-control-file")
         br
-
         input(
           type='submit'
           name='cadastrar'

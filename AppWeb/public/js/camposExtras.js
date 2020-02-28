@@ -1,4 +1,5 @@
 var incremento = 1;
+
 function excluirLinha(j) {
     if (((j + 1) == incremento)) {
         var element = this.document.getElementById("myTable");
@@ -10,8 +11,18 @@ function excluirLinha(j) {
         alert("Remover debaixo para cima!!");
     }
 };
+function incrementa() {
+    incremento++;
+}
 
-function adicionarCampos() {
+function excluirLinhaEditar(j) {
+        var element = this.document.getElementById("myTable");
+        var child = this.document.getElementById("l" + j);
+        element.removeChild(child);
+        --incremento;
+};
+
+function adicionarCampos(flag) {
     var input, input2, excluir, linha;
     var x = this.document.getElementById('myTable');
 
@@ -20,7 +31,10 @@ function adicionarCampos() {
 
     excluir = this.document.createElement("input");
     excluir.type = "button";
-    excluir.setAttribute('onclick', "excluirLinha(" + incremento + ")");
+    if(flag==0)
+        excluir.setAttribute('onclick', "excluirLinha(" + incremento + ")");
+    else
+        excluir.setAttribute('onclick', "excluirLinhaEditar(" + incremento + ")");
     excluir.value = " X ";
     excluir.id = "x" + incremento;
 

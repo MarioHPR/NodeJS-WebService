@@ -1,0 +1,53 @@
+extends ../layout/layout
+
+block content
+  div
+    h1 Cadastrar Exame
+  div
+    div(id='formInstituicao' class="form-row")
+      block teste
+        div(  class="modal fade" id="adicaoInstituicao"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+          div(class="modal-dialog modal-lg")
+            div(class="modal-content")
+              include ../instituicao
+      form( name='testeLoko' class="form-signin" method='POST' action='/exame' enctype='multipart/form-data')
+        label(for="seletor" class="my-1 mr-2") Selecione a instituição que foi realizado o exame
+        each item in dados
+          select(name="seletor" id="seletor" class="custom-select my-1 mr-sm-2")
+            each itens in inst
+              if itens.nome == item.instituicao 
+                option(value=itens.id selected)= itens.nome
+              else
+                option(value=itens.id)= itens.nome
+
+            p
+              input(type='button' data-toggle="modal" data-target="#adicaoInstituicao" value='Adicionar outro local' id='btAddInst')
+            h1 Dados do exame
+            input(class="form-control" type='text' name='nome' value=item.exame placeholder='Nome do exame')
+            p   
+              div(id='myTable' class="text-center")
+                h4 Dados e parametros
+                input(type='button' onclick='adicionarCampos(1)' value=' + ' )
+                each camp in campos
+                  script.
+                    incrementa();
+                  div(id="l"+camp.id)
+                    input(type='text' name="A"+camp.id value=camp.campo)
+                    label = 
+                    input(type='text' name="V"+camp.id value=camp.valor)
+                    input(type='button' onclick="excluirLinhaEditar("+camp.id+")"  value = ' X ')
+                
+                  
+
+              div(class="form-group")
+                label(for="arq" ) Anexar arquivo
+                input(id="arq" name="file" type="file" accept=item.linkImage class="form-control-file")
+                br
+              //img(src=item.linkImage)
+              img(src='../../../tmp/uploads/1383902cbebb2a9341ca8341cb1101ff-Horarios.jpeg')
+          input(
+            type='submit'
+            name='cadastrar'
+            value='cadastrar'
+            class="btn btn-lg btn-primary btn-block"
+          )  

@@ -6,12 +6,32 @@ var mysql = require('mysql');
 var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
 
 router.get('/', function (req, res, next) {
-    console.log("entrou aqui na instituicao");
     var sql = 'SELECT * FROM Instituicao WHERE id_usuario = ?';
 
     const connection = mysql.createConnection(consMysql);
     connection.connect();
     connection.query(sql, [req.query.id_usuario], function (error, results) {
+        if (error) {
+            console.log(error); 
+            return res.status(304).end();
+        }
+        return res.status(200).json(results);
+    });
+    connection.end();
+});
+
+router.get('/visu', function (req, res, next) {
+    console.log("enroeoedlkemcoi")
+    console.log(req.query)
+    let objeto = [];
+    objeto.push(req.query.idExame);
+    objeto.push(req.query.idUsuario);
+    objeto.push(req.query.idInstituicao);
+
+    var sql = 'SELECT  Exames.nome_exame AS exame,Exames.linkImage, Instituicao.nome AS instituicao FROM  Exames INNER JOIN Instituicao WHERE Exames.id = ? AND Exames.id_usuario = ? AND Instituicao.id = ?;';
+    const connection = mysql.createConnection(consMysql);
+    connection.connect();
+    connection.query(sql, objeto, function (error, results) {
         if (error) {
             console.log(error);
             return res.status(304).end();
@@ -23,9 +43,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    console.log(req.body.nome);
-    console.log(req.body.id_local);
-    console.log(req.body.id_usuario);
     let instituicao = [];
     instituicao.push(req.body.nome);
     instituicao.push(req.body.id_local);
@@ -38,7 +55,6 @@ router.post('/', function (req, res, next) {
             return res.status(304).end();
         }
         let resposta = { "id": result.insertId };
-        console.log(resposta);
         return res.status(200).json(resposta);
     });
 });
