@@ -61,6 +61,8 @@ router.get('/visualizacao', function (req, res, next) {
                         }
                     }).then(function (resp) {
                         if (resp.status == 200) {
+                            var link = resposta[0].linkImage;
+                            resposta[0].linkImage = link.substring(link.indexOf("\\images"));
                             res.render('usuario/visualizarExame', { inst: resp.data, dados: resposta, campos: respon.data });
                         }
                     }).catch(error => { });
