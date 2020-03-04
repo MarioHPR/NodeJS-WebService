@@ -3,7 +3,58 @@ var router  = express.Router();
 var axios   = require('axios');
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('usuario/consulta');
+    // Requisições do tipo GET
+    axios.get('http://localhost:3000/consultas', {
+        params: {
+            idUsuario: 1
+        }
+    }).then(function (response) {
+        if (response.status == 200) {
+            console.log(response.data)
+            res.render('usuario/consulta', { consultas: response.data });
+        }
+    }).catch(error => { });
+   // res.render('usuario/consulta');
+});
+
+router.get('/add', function (req, res, next) {
+    // Requisições do tipo GET
+    axios.get('http://localhost:3000/instituicao', {
+        params: {
+            id_usuario: 1
+        }
+    }).then(function (response) {
+        if (response.status == 200) {
+            console.log(response.data);
+            res.render('usuario/addConsulta', { inst: response.data });
+        }
+    }).catch(error => { });
+});
+
+router.get('/visualizacao', function (req, res, next) {/// MEXER EM TUDO
+    // Requisições do tipo GET
+    //res.render('usuario/visualizarExame', { teste: "ew", inst: "testeee", campos: "teste" });/*
+    axios.get('http://localhost:3000/consultas/visu', {
+        params: {
+            idConsulta    : req.query.consulta,
+            idUsuario     : 1,
+            idInstituicao : req.query.idInstituicao 
+        }
+    }).then(function (response) {
+        if (response.status == 200) {
+            axios.get('http://localhost:3000/instituicao', {
+                params: {
+                    id_usuario: 1
+                }
+            }).then(function (resp) {
+                if (resp.status == 200) {
+                   // var link = response[0].linkImage;
+                    //response[0].linkImage = link.substring(link.indexOf("\\images"));
+                    res.render('usuario/visualizarConsulta', { inst: resp.data, dados: response.data });
+                }
+            }).catch(error => { });
+        }
+    }).catch(error => { });
 });
 /* GET users listing. */
 router.post('/', function (req, res, next) {

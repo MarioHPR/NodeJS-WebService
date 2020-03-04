@@ -21,40 +21,45 @@ function base64_decode(base64str, fileName) {
 function base64_encode(fileName) {
 	var bitmap = fs.readFileSync('src/temp/' + fileName + '');
 	return new Buffer(bitmap).toString('base64');
-}
+} 
 
 router.get('/', function (req, res, next) {
 	var sql;
 	let aux = [];
 	const connection = mysql.createConnection(consMysql);
-	if (req.query.id) {
-		aux.push(req.query.id);
-		sql = "SELECT * FROM Consulta WHERE id_usuario = ? ORDER BY diagnostico";
-		connection.query(sql, aux, function (error, results, next) {
 
-			if (error) {
-				console.log(error);
-				return res.status(304).end();
-			}
-			return res.status(200).json(results);
-		});
-	} 
-	if (req.query.busca && req.query.usu) {
-		console.log("aqui ele passou");
-		console.log(req.query.busca + " = " + req.query.usu);
-		aux.push(req.query.busca);
-		aux.push(req.query.usu);
-		sql = "SELECT * FROM Consulta WHERE id LIKE ? AND id_usuario LIKE ?";
-		connection.query(sql, aux, function (error, results, next) {
+	aux.push(req.query.idUsuario);
+	sql = "SELECT * FROM Consulta WHERE id_usuario = ? ORDER BY diagnostico;";
+	connection.query(sql, aux, function (error, results, next) {
+		if (error) {
+			console.log(error);
+			return res.status(304).end();
+		}	
+		console.log(results)
+		return res.status(200).json(results);
+	});
+});
 
-			if (error) {
-				console.log(error);
-				return res.status(304).end();
-			}
-			console.log(results[0]);
-			return res.status(200).json(results[0]);
-		});
-	}
+router.get('/visu', function (req, res, next) {
+	console.log("entro nessa bagaca ")
+	console.log(req.query)
+	let objeto = [];
+	objeto.push(req.query.idConsulta);
+	objeto.push(req.query.idUsuario);
+	objeto.push(req.query.idInstituicao);
+
+	var sql = 'SELECT  Consulta.diagnostico,Consulta.prescricao,Consulta.nome_medico,Consulta.link_image,Instituicao.nome AS instituicao FROM  Consulta INNER JOIN Instituicao ON Consulta.id_instituicao = Instituicao.id WHERE Consulta.id = ? AND Consulta.id_usuario = ? AND Instituicao.id = ?;';
+	const connection = mysql.createConnection(consMysql);
+	connection.connect();
+	connection.query(sql, objeto, function (error, results) {
+		if (error) {
+			console.log(error);
+			return res.status(304).end();
+		}
+		console.log(results);
+		return res.status(200).json(results);
+	});
+	connection.end();
 });
 
 router.post('/',function (req, res, next) {

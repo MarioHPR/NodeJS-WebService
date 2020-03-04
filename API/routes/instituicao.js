@@ -42,6 +42,8 @@ router.get('/visu', function (req, res, next) {
     connection.end();
 });
 
+
+
 router.post('/', function (req, res, next) {
     let instituicao = [];
     instituicao.push(req.body.nome);

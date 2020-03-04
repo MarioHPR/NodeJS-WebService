@@ -1,54 +1,17 @@
 extends ../layout/layout
 
 block content
-  h1 Cadastrar consulta
+  h1.h3.mb-0.text-gray-800  Consultas
   
-  form(method='POST' action='/consulta' class="form-signin")
-    label(for="diagnostico") Diagnóstico:
-      input(
-        type='text'
-        name='diagnostico'
-        placeholder='Digite diagnóstico'
-        class="form-control"
-        required
-      )
-    label(for="prescricao") Prescrição:
-      input(
-        type='text'
-        name='prescricao'
-        class="form-control"
-        placeholder='Digite a prescrição'
-        required
-      )
-    label(for="nome_medico") nome médico:
-      input(
-        type='text'
-        name='nome_medico'
-        placeholder='Digite nome médico'
-        class="form-control"
-        required
-      )
-    label(for="id_usuario") id usuário:
-      input(
-        type='text'
-        name='id_usuario'
-        placeholder='Digite id usuário'
-        class="input-group-text"
-        required
-      )
-    label(for="id_instituicao") id instituição:
-      input(
-        type='text'
-        name='id_instituicao'
-        placeholder='Digite id instituição'
-        class="input-group-text"
-        required
-      )
-    
-    input(
-        type='submit'
-        name='Cadastrar'
-        value='Cadastrar'
-        class="btn btn-outline-primary"
-      )
-    a(class="btn btn-outline-warning" href='/') Voltar
+  .container
+      .row
+        each item in consultas
+          .card.mb-1 
+            .card-body
+              h5.card-title= "Diagnóstico: " + item.diagnostico
+              .card-text
+                a(href=`consulta/visualizacao?consulta=${item.id}&idInstituicao=${item.id_instituicao}` name="exameVisualizacao" class="btn btn-primary") Visualizar             
+                a(href=`exame/?exame=${item.id}` name="exameVisualizacao" class="btn btn-danger") Excluir
+
+  a( id="add" class="mt-auto p-2 bd-highlight" href='consulta/add')
+    img(src="/images/add.png" alt="csdsdfs" width="100px")
