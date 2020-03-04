@@ -21,7 +21,7 @@ block content
                 option(value=itens.id)= itens.nome
 
           p
-            input(type='button' data-toggle="modal" data-target="#adicaoInstituicao" value='Adicionar outro local' id='btAddInst')
+            input(type='button' class="btn btn-primary" data-toggle="modal" data-target="#adicaoInstituicao" value='Adicionar outro local' id='btAddInst')
           h1 Dados da Consulta
           label(for="diagnostico") Diagnóstico:
           input(class="form-control" type='text' name='diagnostico' value=item.diagnostico placeholder='Digite o diagnóstico')
@@ -31,7 +31,7 @@ block content
           input(class="form-control" type='text' name='nomeMedico' value=item.nome_medico placeholder='Digite o nome do médico')
           div(class="form-group")
             label(for="arq" ) Anexar arquivo
-            input(id="arq" name="file" type="file" accept=item.linkImage class="form-control-file")
+            input(id="arq" name="file" type="file"  accept=item.linkImage class="form-control-file")
             br
             img(src=item.linkImage alt='Foto da consulta')
           input(
