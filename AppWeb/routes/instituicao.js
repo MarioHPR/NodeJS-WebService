@@ -30,7 +30,7 @@ router.post('/', function (req, res, next) {
                             id_usuario: 1
                         }
                     }).then(function (response) {
-                        if (response.status == 200) {
+                        if (response.status == 200) { 
                             console.log(response.data);
                             res.render('usuario/addExame', { inst: response.data });
                         }

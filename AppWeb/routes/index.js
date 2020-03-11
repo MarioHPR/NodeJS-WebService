@@ -7,6 +7,10 @@ router.get('/', function (req, res, next) {
     console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
     res.render('index');
 });
+router.get('/finalizar', function (req, res, next) {//// mexer aqui qndo arrumar as sessões
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaa quiiii");
+    res.redirect('/usuario/login');
+});
 
 
 

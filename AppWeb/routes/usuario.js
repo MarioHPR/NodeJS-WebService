@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
 /* GET users listing. */
 router.post('/', function(req, res, next) {
   // Requisições do tipo GET
+  console.log(req.body)
   axios.post('http://localhost:3000/usuario',{
     nome:req.body.nome,
     dataNascimento : req.body.dataNascimento,
@@ -42,11 +43,16 @@ router.post('/login', function (req, res, next) {
     login: req.body.login,
     senha: req.body.senha
   }).then(function (response) {
-    console.log(response.status); // ex.: { user: 'Your User'}
+    console.log("response.status"); // ex.: { user: 'Your User'}
+    console.log("response.status");
+    console.log(response.status);
     if (response.status == 200) {
-      res.redirect('menu/');
+      res.redirect('/'); 
     }
-    res.redirect('http://www.msn.com');
+    else{
+      res.redirect('http://www.msn.com');
+    }
+   
   });
 });
 

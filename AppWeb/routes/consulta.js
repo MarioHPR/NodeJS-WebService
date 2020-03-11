@@ -63,7 +63,7 @@ router.post('/', function (req, res, next) {
         diagnostico    : req.body.diagnostico,
         prescricao     : req.body.prescricao,
         nome_medico    : req.body.nome_medico,
-        id_usuario     : req.body.id_usuario,
+        id_usuario     : 1,
         id_instituicao : req.body.id_instituicao
     }).then(function (response) {
         console.log(response.data); // ex.: { user: 'Your User'}

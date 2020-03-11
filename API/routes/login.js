@@ -7,6 +7,7 @@ var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
 router.post('/',function(req,res,next) {
     let sql;
     let login = [];
+    
     login.push(req.body.login);
     login.push(req.body.senha);
     sql = "SELECT * FROM Usuario WHERE usuario = ? AND senha = ?";
@@ -22,9 +23,12 @@ router.post('/',function(req,res,next) {
             resposta = results[0];
             flag = 200;
         }else{
-            resposta = results;
+            resposta = "";
             flag = 314;
         }
+        console.log(resposta)
+        console.log("autq")
+        console.log(flag)
         return res.status(flag).json(resposta).end;
     });
 });

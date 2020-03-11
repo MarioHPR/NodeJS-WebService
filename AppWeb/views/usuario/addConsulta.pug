@@ -1,54 +1,49 @@
 extends ../layout/layout
 
-block content
+block content 
   h1 Cadastrar consulta
-  
-  form(method='POST' action='/consulta' class="form-signin")
-    label(for="diagnostico") Diagnóstico:
+  div(id='formInstituicao' class="form-row")
+    block teste
+      div(  class="modal fade" id="adicaoInstituicao"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+        div(class="modal-dialog modal-lg")
+          div(class="modal-content")
+            include ../instituicao
+    form(method='POST' action='/consulta' class="form-signin" enctype='multipart/form-data')
+      label(for="seletor" class="my-1 mr-2") Selecione a instituição que foi realizado a consulta
+        select(name="seletor" id="seletor" class="custom-select my-1 mr-sm-2")
+          option(selected) Selecione a instituição
+          each item in inst
+            option(value=item.id)= item.nome
+        p
+          input(type='button' class="btn btn-primary" data-toggle="modal" data-target="#adicaoInstituicao" value='Adicionar outro local' id='btAddInst')
+      label(for="diagnostico") Diagnóstico:
+        input(
+          type='text'
+          name='diagnostico'
+          placeholder='Digite diagnóstico'
+          class="form-control"
+          required
+        )
+      label(for="prescricao") Prescrição:
+        input(
+          type='text'
+          name='prescricao'
+          class="form-control"
+          placeholder='Digite a prescrição'
+          required
+        )
+      label(for="nome_medico") nome médico:
+        input(
+          type='text'
+          name='nome_medico'
+          placeholder='Digite nome médico'
+          class="form-control"
+          required
+        )
       input(
-        type='text'
-        name='diagnostico'
-        placeholder='Digite diagnóstico'
-        class="form-control"
-        required
-      )
-    label(for="prescricao") Prescrição:
-      input(
-        type='text'
-        name='prescricao'
-        class="form-control"
-        placeholder='Digite a prescrição'
-        required
-      )
-    label(for="nome_medico") nome médico:
-      input(
-        type='text'
-        name='nome_medico'
-        placeholder='Digite nome médico'
-        class="form-control"
-        required
-      )
-    label(for="id_usuario") id usuário:
-      input(
-        type='text'
-        name='id_usuario'
-        placeholder='Digite id usuário'
-        class="input-group-text"
-        required
-      )
-    label(for="id_instituicao") id instituição:
-      input(
-        type='text'
-        name='id_instituicao'
-        placeholder='Digite id instituição'
-        class="input-group-text"
-        required
-      )
-    
-    input(
-        type='submit'
-        name='Cadastrar'
-        value='Cadastrar'
-        class="btn btn-outline-primary"
-      )
-    a(class="btn btn-outline-warning" href='/') Voltar
+          type='submit'
+          name='Cadastrar'
+          value='Cadastrar'
+          class="btn btn-outline-primary"
+        )
+      a(class="btn btn-outline-warning" href='/') Voltar

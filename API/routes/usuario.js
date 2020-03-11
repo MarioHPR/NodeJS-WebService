@@ -10,6 +10,7 @@ router.post('/', function(req, res, next) {
     let usuario =[];
     let sql;
     console.log('api')
+  console.log(req.body)
     usuario.push(req.body.cpf);
     usuario.push(req.body.nome);
     usuario.push(req.body.dataNascimento);

@@ -13,6 +13,10 @@ html(lang='en')
 		// Custom styles for this template
 		link(href='/css/sb-admin-2.min.css', rel='stylesheet')
 		style(type='text/css').
+			form{
+				border: solid 5px;
+				
+			}
 			input,textarea{
 				text-align: center;
 			}
@@ -167,7 +171,7 @@ html(lang='en')
 								.modal-body Select "Logout" Para finalizar a sessão.
 								.modal-footer
 									button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
-									a.btn.btn-primary(href='usuario/login') Logout
+									a.btn.btn-primary(href='/finalizar') Logout
 					// Bootstrap core JavaScript
 					script(src='/vendor/jquery/jquery.min.js')
 					script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')

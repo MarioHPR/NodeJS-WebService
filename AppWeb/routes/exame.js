@@ -8,7 +8,7 @@ var FormData = require('form-data');
 var fs = require('fs');
 
 
-/* GET home page. */ 
+/* GET home page. */  
 router.get('/', function (req, res, next) {
     // Requisições do tipo GET
     axios.get('http://localhost:3000/exames', {
