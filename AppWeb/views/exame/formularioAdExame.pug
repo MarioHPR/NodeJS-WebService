@@ -1,0 +1,47 @@
+block formAdExame
+  form( id='formAdExameExistente' class="form-signin bordaForm" method='POST' action='/tipoExame/exameExistente' enctype='multipart/form-data')
+    h4(class="espacoTop textTexto") Dados do exame
+    input(type="idTipoExame" value=idTipoExame name="idTipoExame" hidden)
+    div(class="alinhandoConteudo espacoTop")
+      div(class="espaco")
+        label(for='dataExame' ) Data do exame:
+        input(type="date" name='dataExame' class="form-control" required)
+      div( class="text-center preencher espaco")
+        label(for="seletor" class="my-1 mr-2") Instituição que realizou o exame
+        div(class="preencher alinhandoConteudo")
+          select(name="seletor" id="seletor" class="form-control preencher" )
+            option(selected value="nulo") Selecione a instituição
+              each int in inst
+                option(value=int.id)= int.nome
+          a( id="btnExibeOcultaDiv" onclick='trocaBotao()' )
+            img(id="imgAdd" src="https://img.icons8.com/ios/40/000000/plus-2-math.png" alt="adicionar instituição" title="adicionar instituição")
+    div( id="dvPrincipal")
+      include ../instituicao
+    div(class="text-center espacoTop")
+      table(class="table ")
+        thead
+        tr
+            th(scope="col") Atributo(s)
+            th(scope="col") Valor(es)
+            th(scope="col") 
+              input(type='button'  onclick='adicionarCampos(1)' value=' + ' )
+        tbody(id='myTable')
+          each campo1 in campoCadastro
+            if campo1.id != null
+              tr(id="l"+campo1.id)
+                td
+                  span(class="form-control")=campo1.campo
+                  input(type='text' class="form-control" name="At" value=campo1.id hidden)
+                td 
+                  input(type='text' class="form-control" class="testes" name="Vt" )
+                td
+                  input(type='button' onclick="excluirLinha("+campo1.id+")"  value = ' X ')
+    
+    input(class="file-chooser" name="file" type="file" accept="image/*" hidden)
+    div(id="previa" hidden)
+      label Imagem selecionada
+      img( class="preview-img alinhandoConteudo " alt="previa exame" )
+    div(class='alinhandoConteudo espaco')
+      button(id="arq" type="button" value="Escolher arquivo" class=" espaco espacoTop file-button link bordaBasica alinhandoConteudo posicaoBottom") Anexar arquivo
+        img(class="espaco" src="https://img.icons8.com/officel/30/000000/attach.png")
+      input(type='submit'  value='Enviar' class="btn btn-outline-primary bordaBasica espacoTop posicaoDireita posicaoBottom corBasicaBotao")

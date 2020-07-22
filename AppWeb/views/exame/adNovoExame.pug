@@ -1,0 +1,50 @@
+block modalAdicionar
+  div(id="myModal" class="modal fade")
+    div(class="modal-dialog")
+      div(class="modal-content")
+        div(class="modal-body")
+          form( id='formAddExame' name='testeLoko' class="form-signin" method='POST' action='/tipoExame' enctype='multipart/form-data')
+            div( class="text-center")
+              label(for="seletor" class="my-1 mr-2") Selecione a instituição que foi realizado o exame
+            div(class="input-group mb-3")
+              select(name="seletor" id="seletor" class="form-control" )
+                option(selected value="nulo") Selecione a instituição
+                  each int in inst
+                    option(value=int.id)= int.nome
+              div(class="input-group-append")
+                a( id="btnExibeOcultaDiv" onclick='trocaBotao()' )
+                  img(id="imgAdd" src="https://img.icons8.com/ios/40/000000/plus-2-math.png" alt="adicionar instituição" title="adicionar instituição")
+            div( id="dvPrincipal")
+                include ../instituicao
+            h1 Dados do exame
+            div(class="form-row")
+              div( class="col")
+                label(for="nome") Nome exame:
+                  input(id="exame" class="form-control"  type='text' name='nomeExame' placeholder='Nome do exame')
+              div( class="col")
+                label(for='dataExame') Data do exame:
+                  input(type="date" name='dataExame' class="form-control" required)
+            div(class="text-center")
+              table(class="table table-striped")
+                thead
+                  tr
+                    th(scope="col") Atributo(s)
+                    th(scope="col") Valor(es)
+                    th(scope="col") Ação
+                tbody(id='myTable')
+                  tr
+                    td
+                      input(type='text' name='A0' class="form-control" placeholder='1 Atributo')
+                    td
+                      input(type='text' name='V0' class="form-control testes" placeholder='1 Valor')
+                    td
+                      input(type='button'  onclick='adicionarCampos(0)' value=' + ' )
+            label(for="arq") Anexar arquivo
+              input(id="arq" type="button" value="Escolher arquivo" class="file-button form-control-file")
+              input(class="file-chooser" name="file" type="file" accept="image/*" hidden)
+            img(id="previa" class="preview-img" alt="prev")
+            br
+            br
+            input(type='submit' name='cadastrar' value='cadastrar' class="btn btn-primary btn-block")
+          br
+          button(type="button" class="btn btn-info btn-block" data-dismiss="modal") Fechar

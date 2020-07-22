@@ -1,0 +1,16 @@
+extends ../layout/layout
+block content
+  h2 Lista de Consulta(s)
+  div(class="row")
+    div(class="col-3")
+      div(class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical")
+        h5 Consultas
+        a(class="btn btn-outline-primary badge-light nav-link active espaco" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true")= "Adicionar Consulta"
+          each item in consultas
+            - //if idAux != item.idExame
+            a(class="btn btn-outline-primary nav-link badge-light espaco" id="v-pills-tab"+item.id data-toggle="pill" href="#tab"+item.diagnostico role="tab" aria-controls="v-pills-home" aria-selected="false")="Data: " + item.dataConsulta
+    div(class="col-9")
+      div(class="tab-content" id="v-pills-tabContent")
+        div(class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab")
+          block formAdConsulta
+            include ./formularioAddConsulta

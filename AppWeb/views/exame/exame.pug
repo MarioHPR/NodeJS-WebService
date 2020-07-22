@@ -1,0 +1,74 @@
+extends ../layout/layout
+
+block content
+  div(class="container")
+    table.table
+        thead(class="thead-light")
+          h1 Exames
+        thead.thead-dark
+          tr
+            th(scope='col') Id
+            th(scope='col') Tipo
+            th(scope='col') Quantidade
+            th(scope='col') Ação
+        tbody
+          each item in exames
+            tr
+              th(scope='row')= item.id
+              td= item.nomeExame
+              td= item.quantidade + " arquivo(s)"
+              td
+                a(href=`tipoExame/visualizacao?exame=${item.id}&nomeExame=${item.nomeExame}` name="exameVisualizacao")
+                  img(src="https://img.icons8.com/dotty/38/000000/view-file.png" title = "Listar todos" alt="Listar todos os " + item.nomeExame + "s")
+                
+                //a(data-backdrop="static" data-target="#myModal" data-toggle="modal" href='#myModal' data-exame=item.nomeExame data-id=item.id)
+                  img(src='https://img.icons8.com/wired/35/000000/add-rule.png' title = "Adicionar exame " + item.nomeExame alt="Adicionar outro exame " + item.nomeExame)
+                
+                a( data-toggle='modal' data-target='#modalEditar' data-whatever=item.nomeExame data-id=item.id )
+                  img(src="https://img.icons8.com/windows/35/000000/edit-folder.png" title = "Editar tipo exame " + item.nomeExame alt="Editar tipo de exame" + item.nomeExame)
+                
+                //a(href='tipoExame/del/'+item.id name="deleteExame")
+                a( data-toggle='modal' data-target='#modalExcluir' data-id=item.id )
+                  img(src="https://img.icons8.com/ios/35/000000/delete-trash.png" title = "Deletar tipo exame " + item.nomeExame alt="Deletar tipo exame " + item.nomeExame)
+    
+    div(id='modalEditar' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='modalEditarLabel' aria-hidden='true')
+      div(class='modal-dialog' role='document')
+        div(class='modal-content')
+          div(class='modal-header')
+            h5(id='modalEditarLabel' class='modal-title') Editar Tipo de exame 
+              button(class='close' type='button' data-dismiss='modal' aria-label='Fechar')
+                span(aria-hidden='true') ×
+          div(class='modal-body')
+            form(method='POST' action='tipoExame/editar' class="form-signin")
+              div(class='form-group')
+                input(id='idEdit' type='hidden' name='id')
+                label(class='col-form-label' for='recipient-name') Editar nome do exame:
+                input(id="recipient-name" class="form-control" type='text' name='nomeNovo' required)
+              div(class='form-group')
+                label(class='col-form-label' for='message-text') Motivo da edição:
+                textarea(id="message-text" class="form-control" name='mensagem' required)
+              div(class="modal-footer")
+                button(class="btn btn-secondary" type='button' data-dismiss='modal') Sair
+                input(class='btn btn-primary' type='submit' value='Editar')
+      
+    div(id='modalExcluir' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='modalExcluirLabel' aria-hidden='true')
+      div(class='modal-dialog' role='document')
+        div(class='modal-content')
+          div(class='modal-body')
+            form(method='POST' action='tipoExame/del/' class="form-signin")
+              div(class='form-group')
+                input(id='idEdit' type='hidden' name='id')
+                h5 VOCÊ REALMENTE DESEJA EXCLUIR TODOS OS EXAMES DESSE TIPO???
+              div(class="modal-footer")
+                button(class="btn btn-secondary" type='button' data-dismiss='modal') NÃO
+                input(class='btn btn-primary' type='submit' value='SIM')
+
+    block modalAdicionar
+      include ./adNovoExame
+    
+
+    //data-backdrop="static"  data-exame=item.nomeExame data-id=item.id
+    //a( id="add" class="mt-auto p-2 bd-highlight" href='tipoExame/add')
+    a( id="add" class="mt-auto p-2 bd-highlight" data-target="#myModal" data-toggle="modal" href='#myModal')
+      img(src="/images/add.png" alt="csdsdfs" width="80px")
+    
