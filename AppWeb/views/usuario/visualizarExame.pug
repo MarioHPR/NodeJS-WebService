@@ -1,52 +1,83 @@
 extends ../layout/layout
-
 block content
-  div
-    h1 Cadastrar Exame
-  div
-    div(id='formInstituicao' class="form-row")
-      block teste
-        div(  class="modal fade" id="adicaoInstituicao"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
-          div(class="modal-dialog modal-lg")
-            div(class="modal-content")
-              include ../instituicao
-      form( name='testeLoko' class="form-signin" method='POST' action='/exame' enctype='multipart/form-data')
-        label(for="seletor" class="my-1 mr-2") Selecione a instituição que foi realizado o exame
-        each item in dados
-          select(name="seletor" id="seletor" class="custom-select my-1 mr-sm-2")
-            each itens in inst
-              if itens.nome == item.instituicao 
-                option(value=itens.id selected)= itens.nome
-              else
-                option(value=itens.id)= itens.nome
-
-            p
-              input(type='button' class="btn btn-primary" data-toggle="modal" data-target="#adicaoInstituicao" value='Adicionar outro local' id='btAddInst')
-            h1 Dados do exame
-            input(class="form-control" type='text' name='nome' value=item.exame placeholder='Nome do exame')
-            p   
-              div(id='myTable' class="text-center")
-                h4 Dados e parametros
-                input(type='button' onclick='adicionarCampos(1)' value=' + ' )
-                each camp in campos
-                  script.
-                    incrementa();
-                  div(id="l"+camp.id)
-                    input(type='text' name="A"+camp.id value=camp.campo)
-                    label = 
-                    input(type='text' name="V"+camp.id value=camp.valor)
-                    input(type='button' onclick="excluirLinhaEditar("+camp.id+")"  value = ' X ')
-                
-                  
-
-              div(class="form-group")
-                label(for="arq" ) Anexar arquivo
-                input(id="arq" name="file" type="file" accept=item.linkImage class="form-control-file")
-                br
-              img(src=item.linkImage alt='Foto exame')
-          input(
-            type='submit'
-            name='cadastrar'
-            value='cadastrar'
-            class="btn btn-lg btn-primary btn-block"
-          )  
+    -var aux;
+    h2 Lista de exame(s)
+    h4= nomeExame + "(s)"
+    div(class="row")
+      div(class="col-3")
+        div(class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical")
+          h5 Exames
+          a(class="btn btn-outline-primary badge-light nav-link active espaco" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true")= "Adicionar outro " + nomeExame
+          each item in dadosExame
+            a(class="btn btn-outline-primary nav-link badge-light espaco" id="v-pills-tab"+item.id data-toggle="pill" href="#tab"+item.id role="tab" aria-controls="v-pills-home" aria-selected="false")="Data: " + item.dataExame
+      div(class="col-9")
+        div(class="tab-content" id="v-pills-tabContent")
+          div(class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab")
+            block formAdExame
+              include ./formularioAdExame
+          -b = 0;
+          each item in dadosExame
+            -b++;
+            div(class="tab-pane fade" id="tab"+item.id role="tabpanel" aria-labelledby="v-pills-settings-tab") 
+              div(class="card card-table")
+                div(class="card-header")
+                  div(class="tools dropdown show")
+                    span(class="icon mdi mdi-download")
+                    a(class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false")
+                      span(class="icon mdi mdi-more-vert")
+                    div(class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(20px, 25px, 0px);")
+                      a(class="dropdown-item" href="#") action
+                      a(class="dropdown-item" href="#") Another action
+                      a(class="dropdown-item" href="#") Something else here
+                      div(class="dropdown-divider")
+                      a(class="dropdown-item" href="#") Separated link
+                    div(class="title")= b
+              div(class="card-body table-responsive")
+                table(class="table bordaForm")
+                  thead
+                    tr
+                      th(style="width:40%;") Instituição
+                      th(class="number") Atributo
+                      th(style="width:20%;") Valor
+                      if item.linkImage
+                        th(style="width:20%;") Imagem
+                      th(class="actions" style="width:5%;")
+                  tbody(class="no-border-x")
+                    -aux = 0
+                    each params in dadosParametros
+                      tr
+                        if aux == 0 
+                          td(rowspan="300")
+                            div(class="collapse" id="navbarToggleExternalContent" + b)
+                              each locali in localidade
+                                if item.nome == locali.nome && aux == 0
+                                  span(class="text-muted")= "Instituição: " + locali.nome
+                                  br
+                                  span(class="text-muted")= "Cidade: " + locali.cidade
+                                  br
+                                  span(class="text-muted")= "Cep: " + locali.cep
+                                  br
+                                  span(class="text-muted")= "Bairro: " + locali.bairro
+                                  br
+                                  span(class="text-muted")= "Rua: " + locali.rua
+                                  br
+                                  span(class="text-muted")= "N°: " + locali.numero
+                            nav(id="btNavegador")
+                                button(id='btInsti' class="btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" + b aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação")
+                                  img(id='imgExpand' src="https://img.icons8.com/ios-glyphs/20/000000/expand-arrow.png")
+                                  span(id='spanNome')= item.nome
+                            -aux++;
+                        if params.idExame == item.id
+                          if params.campo != ""
+                            td=params.campo
+                            td=params.valor
+                          else
+                            td ?
+                            td ?
+                        //if aux == 2 && params.idExame == item.id
+                        if aux == 1 && item.linkImage
+                          span="sd"+ item.linkImage
+                          td(rowspan="300" )
+                            a(href=item.linkImage target="_blank")
+                              img(id="imgTab" class="testess"  src=item.linkImage alt="teste")
+                          -aux++

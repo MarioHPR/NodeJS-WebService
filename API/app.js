@@ -1,17 +1,23 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+var createError  = require('http-errors');
+var express      = require('express');
+var path         = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var logger       = require('morgan');
 
 var usuarioRouter = require('./routes/usuario');
-var loginRouter = require('./routes/login');
+var loginRouter   = require('./routes/login');
 
-var instituicaoRouter = require('./routes/instituicao');
-var localRouter       = require('./routes/localidade');
-var exameRouter       = require('./routes/exames');
-var consultaRouter    = require('./routes/consultas');
-var parametrosRouter  = require('./routes/parametros');
+var instituicaoRouter     = require('./routes/instituicao');
+var localRouter           = require('./routes/localidade');
+var exameRouter           = require('./routes/exames');
+var consultaRouter        = require('./routes/consultas');
+var parametrosRouter      = require('./routes/parametros');
+var campoPartrRouter      = require('./routes/campoParametro');
+var parametroExameRouter  = require('./routes/parametroExame');
+
+var tipoExameRouter   = require('./routes/tipoExame');
+
+var parametroGeraisRouter = require('./routes/Parametros/parametrosGerais');
 
 var app = express();
 
@@ -29,6 +35,13 @@ app.use('/localidade', localRouter);
 app.use('/exames', exameRouter);
 app.use('/consultas', consultaRouter);
 app.use('/parametros', parametrosRouter);
+app.use('/campoParametro', campoPartrRouter);
+app.use('/parametroExame', parametroExameRouter);
+
+app.use('/parametrosGerais', parametroGeraisRouter);
+
+
+app.use('/tipoExame', tipoExameRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

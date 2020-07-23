@@ -1,10 +1,30 @@
 var express = require('express');
-var router = express.Router();
-var app = express();
+var router  = express.Router();
+var app     = express();
 
-var mysql = require('mysql');
-var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
+var mysql     = require('mysql');
+var consMysql = 'mysql://root:@localhost:3306/bancoTcc2';
 
+router.post('/local', function (req, res, next) {
+
+    const arrayParametros = req.body.arrayParamets.map(parametros => [parametros.ids]);
+    const values = arrayParametros.map(() => "(?)");
+
+
+    // + values.join(","), arrayParametros, async function (error, results) {
+    var sql = 'SELECT * FROM Localidade INNER JOIN Instituicao ON Localidade.id = Instituicao.idLocal WHERE Instituicao.id IN (' + values.join(",") + ')';
+    const connection = mysql.createConnection(consMysql);
+
+    connection.connect();
+    connection.query(sql, arrayParametros, async function (error, results) {
+        if (error) {
+            console.log(error);
+            return res.status(304).end();
+        }
+        return res.status(200).json(results);
+    });
+    connection.end();
+});
 
 
 router.post('/', function (req, res, next) {

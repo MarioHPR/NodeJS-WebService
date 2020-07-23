@@ -3,14 +3,13 @@ var router = express.Router();
 var app = express();
 
 var mysql = require('mysql');
-var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
+var consMysql = 'mysql://root:@localhost:3306/bancoTcc2';
 
 router.get('/', function (req, res, next) {
-    var sql = 'SELECT * FROM Instituicao WHERE id_usuario = ?';
-
+    var sql = 'SELECT * FROM Instituicao WHERE idUsuario = ?';
     const connection = mysql.createConnection(consMysql);
     connection.connect();
-    connection.query(sql, [req.query.id_usuario], function (error, results) {
+    connection.query(sql, [req.query.idUsuario], function (error, results) {
         if (error) {
             console.log(error); 
             return res.status(304).end();
@@ -21,8 +20,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/visu', function (req, res, next) {
-    console.log("enroeoedlkemcoi")
-    console.log(req.query)
     let objeto = [];
     objeto.push(req.query.idExame);
     objeto.push(req.query.idUsuario);
@@ -36,7 +33,6 @@ router.get('/visu', function (req, res, next) {
             console.log(error);
             return res.status(304).end();
         }
-        console.log(results);
         return res.status(200).json(results);
     });
     connection.end();
@@ -47,10 +43,10 @@ router.get('/visu', function (req, res, next) {
 router.post('/', function (req, res, next) {
     let instituicao = [];
     instituicao.push(req.body.nome);
-    instituicao.push(req.body.id_local);
-    instituicao.push(req.body.id_usuario);
+    instituicao.push(req.body.idLocal);
+    instituicao.push(req.body.idUsuario);
     const connection = mysql.createConnection(consMysql);
-    var sql = "INSERT INTO Instituicao (nome,id_local,id_usuario) VALUES (?,?,?)";
+    var sql = "INSERT INTO Instituicao (nome,idLocal,idUsuario) VALUES (?,?,?)";
     connection.query(sql, instituicao, function (error, result) {
         if (error) {
             console.log(error)
@@ -78,11 +74,11 @@ router.delete('/:id', function (req, res, next) {
 router.put('/:id', function (req, res) {// fazer ainda tirar duvida com Prof. Carlos
     let instituicao = [];
     instituicao.push(req.body.nome);
-    instituicao.push(req.body.id_local);
+    instituicao.push(req.body.idLocal);
     instituicao.push(req.body.id);
 
     const connection = mysql.createConnection(consMysql);
-    connection.query("UPDATE Instituicao SET nome=? ,id_local=? WHERE id = ?", instituicao, function (error, results) {
+    connection.query("UPDATE Instituicao SET nome=? ,idLocal=? WHERE id = ?", instituicao, function (error, results) {
         if (error) {
             return res.status(304).end();
         }

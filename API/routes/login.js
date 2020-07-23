@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var mysql = require('mysql');
-var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
+var consMysql = 'mysql://root:@localhost:3306/bancoTcc2';
 
 router.post('/',function(req,res,next) {
     let sql;

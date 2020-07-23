@@ -1,7 +1,7 @@
-var express = require('express');
+/*var express = require('express');
 var router  = express.Router();
 var axios   = require('axios');
-/* GET home page. */
+/* GET home page. *
 router.get('/', function (req, res, next) {
     // Requisições do tipo GET
     axios.get('http://localhost:3000/consultas', {
@@ -56,7 +56,7 @@ router.get('/visualizacao', function (req, res, next) {/// MEXER EM TUDO
         }
     }).catch(error => { });
 });
-/* GET users listing. */
+/* GET users listing. 
 router.post('/', function (req, res, next) {
     console.log("aqui");
     axios.post('http://localhost:3000/consultas', {
@@ -117,4 +117,4 @@ router.put('/consultas/', function name(req, res, next) {
         });
     });
 });
-module.exports = router;
+module.exports = router;*/

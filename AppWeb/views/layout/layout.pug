@@ -13,10 +13,69 @@ html(lang='en')
 		// Custom styles for this template
 		link(href='/css/sb-admin-2.min.css', rel='stylesheet')
 		style(type='text/css').
-			form{
-				border: solid 5px;
-				
+			.conteinerBotoes{
+				border: solid 10px;
+				max-width: 95%;
 			}
+			.bordaBasica{
+				border-radius: 20px;
+				text-align: center;
+			}
+			.posicaoBottom{
+				margin-bottom: 20px;
+			}
+			.corBasicaBotao{
+				width: 200px;
+			}
+			.posicaoDireita{
+				margin-left:auto;
+				margin-right:10px;
+			}
+			.link{	
+				width: 200px;
+				text-indent: 30px;
+				color: blue;
+			}
+			.link:hover{
+				background-color: #D3D3D3;
+				border-radius: 20px;
+				color: blue;
+
+			}
+			.bordaForm{
+				max-width: 650px;
+				border-radius: 20px;
+				background: #DCDCDC;
+			}
+			.espacoTop{
+				margin-top: 20px;
+			}
+			.espaco{	
+				margin-top: 5px;
+				margin-left:5px;
+				margin-right:5px;
+			}
+			.preencher{
+				flex-grow: 1;
+			}
+			.alinhandoConteudo{
+				display: flex;
+				align-items: center;	
+			}
+			
+			#previa,img{
+				max-width: 95%;
+				height: auto;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.testess{
+				width: 100%;
+			}
+			body{
+				text-align: center;
+			}
+			
 			input,textarea{
 				text-align: center;
 			}
@@ -27,7 +86,7 @@ html(lang='en')
 			
 			#myTable{
 				text-align: center;
-				width: 500px;
+				
 			}
 			#add{
 				position: fixed;
@@ -38,6 +97,7 @@ html(lang='en')
 				text-align: center;
 				width: 100%;
 			}
+
 		script(type='text/javascript' src='/js/camposExtras.js').
 		
 	body#page-top
@@ -65,7 +125,7 @@ html(lang='en')
 				.sidebar-heading FUNCIONALIDADES
 				// Nav Item - Pages Collapse Menu
 				li.nav-item
-					a.nav-link(href='/exame')
+					a.nav-link(href='/tipoExame')
 						i.fas.fa-fw.fa-folder
 						span EXAMES
 				// Nav Item - Charts
@@ -172,6 +232,7 @@ html(lang='en')
 								.modal-footer
 									button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
 									a.btn.btn-primary(href='/finalizar') Logout
+				
 					// Bootstrap core JavaScript
 					script(src='/vendor/jquery/jquery.min.js')
 					script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')
@@ -179,6 +240,46 @@ html(lang='en')
 					script(src='/vendor/jquery-easing/jquery.easing.min.js')
 					// Custom scripts for all pages
 					script(src='/js/sb-admin-2.min.js')
+					script.
+						const $i = document.querySelector.bind(document);
+						const previewImg = $i('.preview-img');
+						const fileChooser = $i('.file-chooser');
+						const fileButton = $i('.file-button');
+
+						fileButton.onclick = () => fileChooser.click();
+
+						fileChooser.onchange = e => {
+							const fileToUpload = e.target.files.item(0);
+							const reader = new FileReader();
+							reader.onload = e => previewImg.src = e.target.result;
+							reader.readAsDataURL(fileToUpload);
+							let img = this.document.getElementById("previa");
+							img.removeAttribute("hidden");
+						};
+					script.
+						$('#modalEditar' ).on('show.bs.modal', function (event) {
+							var button    = $(event.relatedTarget) // Botão que acionou o modal
+							var recipient = button.data('whatever') // Extrai informação dos atributos data-*
+							var id = button.data('id')
+							var modal = $(this)
+							modal.find('#idEdit').val(id)
+							modal.find('#recipient-name').val(recipient)// encontra input com id e seta mensagem 
+						})
+						$('#modalExcluir').on('show.bs.modal', function (event) {
+							var button    = $(event.relatedTarget) // Botão que acionou o modal
+							var id = button.data('id')
+							var modal = $(this)
+							modal.find('#idEdit').val(id) 
+						})
+						$('#myModal' ).on('show.bs.modal', function (event) {
+							var button = $(event.relatedTarget) // Botão que acionou o modal
+							var exame  = button.data('exame') // Extrai informação dos atributos data-*
+							var id     = button.data('id')
+							var modal  = $(this)
+							modal.find('#idExame').val(id)
+							modal.find('#exame').val(exame)// encontra input com id e seta mensagem 
+						})
+						
 					//	 Page level plugins
 					//script(src='/vendor/chart.js/Chart.min.js')
 					// Page level custom scripts

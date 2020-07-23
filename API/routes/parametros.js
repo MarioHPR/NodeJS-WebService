@@ -24,19 +24,25 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res) {
-    console.log(req.body);
-    const arrayParametros = req.body.arrayParametros.map(parametros => [parametros.A, parametros.V, req.body.id_exame])
-    console.log(arrayParametros);
-    const values = arrayParametros.map(() => "(?)")
+    idCampos = [];
+    console.log(req.body.campo);
+    const arrayParametros = req.body.campo.map(parametros => [parametros.A]);
+    const values = arrayParametros.map(() => "(?)");
     const connection = mysql.createConnection(consMysql);
-    connection.query("INSERT INTO parametros (campo,valor,id_exame) VALUES " + values.join(","), arrayParametros, async function (error, results) {
+
+    connection.query("INSERT INTO CampoParametro (campo) VALUES " + values.join(","), arrayParametros, async function (error, results) {
         if (error) {
             console.log(error)
             return res.status(304).end();
         }
-        let response = results;
+        let inicio = results.insertId;
+        let fim    = results.insertId + results.affectedRows;
+        for(let i = inicio ; i < fim ; i++ )
+            idCampos.push(i);
+            
+        console.log(idCampos)
 
-        return res.status(200).send(response);
+        return res.status(200).json(idCampos);
     });
 });
 

@@ -8,6 +8,8 @@ router.get('/', function (req, res, next) {
 /* GET users listing. */
 router.post('/', function (req, res, next) { 
     console.log("entrou aqui na inst");
+    console.log(req.body)
+
     var id_localidade;
     axios.post('http://localhost:3000/localidade/', {
         cidade : req.body.cidade, 
@@ -39,8 +41,6 @@ router.post('/', function (req, res, next) {
             });
         }
     });
-    
-   /* */
 });
 
 // deletar

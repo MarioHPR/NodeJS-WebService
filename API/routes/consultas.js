@@ -4,7 +4,7 @@ var app = express();
 var fs = require('fs');
 
 var mysql = require('mysql');
-var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
+var consMysql = 'mysql://root:@localhost:3306/bancoTcc2';
 
 
 //Convertendo binario em arquivo
@@ -29,13 +29,13 @@ router.get('/', function (req, res, next) {
 	const connection = mysql.createConnection(consMysql);
 
 	aux.push(req.query.idUsuario);
-	sql = "SELECT * FROM Consulta WHERE id_usuario = ? ORDER BY diagnostico;";
+	sql = "SELECT * FROM Consulta WHERE idUsuario = ? ORDER BY diagnostico;";
 	connection.query(sql, aux, function (error, results, next) {
 		if (error) {
 			console.log(error);
 			return res.status(304).end();
 		}	
-		console.log(results)
+
 		return res.status(200).json(results);
 	});
 });
@@ -63,16 +63,19 @@ router.get('/visu', function (req, res, next) {
 });
 
 router.post('/',function (req, res, next) {
+	
 	let consulta = [];
+
 	consulta.push(req.body.diagnostico);
 	consulta.push(req.body.prescricao);
-	consulta.push(req.body.nome_medico);
-	consulta.push(req.body.id_usuario);
-	consulta.push(req.body.id_instituicao);
-	consulta.push(null);
+	consulta.push(req.body.nomeMedico);
+	consulta.push(req.body.linkImage);
+	consulta.push(req.body.dataConsulta);
+	consulta.push(req.body.idUsuario);
+	consulta.push(req.body.idInstituicao);
 
 	const connection = mysql.createConnection(consMysql);
-	var sql = "INSERT INTO Consulta (diagnostico,prescricao,nome_medico,id_usuario,id_instituicao) VALUES (?,?,?,?,?)";
+	var sql = "INSERT INTO Consulta (diagnostico,prescricao,nomeMedico,linkImage,dataConsulta,idUsuario,idInstituicao) VALUES (?,?,?,?,?,?,?)";
 	connection.query(sql, consulta, function (error, result) {
 		if (error) {
 			console.log(error)
@@ -80,7 +83,7 @@ router.post('/',function (req, res, next) {
 		}
 		let resposta = { id: result.insertId };
 		console.log(resposta);
-		return res.status(201).json(resposta);
+		return res.status(200).json(resposta);
 	});
 });
 

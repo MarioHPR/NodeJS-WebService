@@ -1,0 +1,75 @@
+block form
+  fieldset(id="camposInstituicao" disabled="disabled")
+    form( id='formAdConsultaExistente' class="form-signin bordaForm" method='POST' action='/consulta/' enctype='multipart/form-data')
+
+      h4(class="espacoTop textTexto") Dados da Consulta
+      div(class="alinhandoConteudo espacoTop")
+        div(class="espaco")
+          label(for='dataConsulta' ) Data Consulta:
+          input(type="date" name='dataConsulta' class="form-control" value=item.dataConsulta)
+        div( class="text-center preencher espaco")
+          label(for="seletor" class="my-1 mr-2") Instituição que realizou a consultaa
+          div(class="preencher alinhandoConteudo")
+            select(name="seletor" id="seletor" class="form-control preencher" required)
+                each iten in todasInst
+                  if inst.id == iten.id
+                      option(selected value=inst.id)= inst.nome
+                  else
+                      option(value=iten.id)= iten.nome
+            a( id="btnExibeOcultaDiv" onclick='trocaBotao()' )
+              img(id="imgAdd" src="https://img.icons8.com/ios/40/000000/plus-2-math.png" alt="adicionar instituição" title="adicionar instituição")
+      div
+        include ../instituicao
+
+      div(class="text-center espacoTop")
+        table(class="table ")
+          thead
+            tr
+              th(scope="col")
+                label(for="nomeMedico") Médico:
+              th(scope="col")
+                label(for="diagnostico") Diagnóstico:
+          tbody(id='myTable')
+            tr(id="l1")
+              td 
+                input(type='text' class="form-control" class="testes" name="nomeMedico" placeholder="Nome do médico:" value= item.nomeMedico )
+              td
+                input(type='text' class="form-control" class="testes" name="diagnostico" placeholder="Diagnóstico da consulta:" value= item.diagnostico required)
+            tr(id="l2")
+              td(colspan="2")
+                label(for="prescricao") Prescrição médica da consulta:
+                textarea( class="form-control" name="prescricao" rows="10" placeholder="Digite aqui a prescrição médica..." required)=item.prescricao
+            if item.linkImage
+              tr(id="l3")
+                td(colspan="2")
+                  a(href=item.linkImage target="_blank")
+                    img(id="imgTab" class="testess"  src=item.linkImage alt="teste")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        - // ver por ultimo
+        input(class="file-chooser" name="file" type="file" accept="image/*" hidden)
+        div(id="previa" hidden)
+          label Imagem selecionada
+          img( class="preview-img alinhandoConteudo " alt="previa consulta" )
+        div(class='alinhandoConteudo espaco')
+          button(id="arq" type="button" value="Escolher arquivo" class=" espaco espacoTop file-button link bordaBasica alinhandoConteudo posicaoBottom") Anexar arquivo
+            img(class="espaco" src="https://img.icons8.com/officel/30/000000/attach.png")
+          input(type='submit'  value='Enviar' class="btn btn-outline-primary bordaBasica espacoTop posicaoDireita posicaoBottom corBasicaBotao")

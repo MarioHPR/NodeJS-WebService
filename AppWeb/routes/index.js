@@ -4,7 +4,7 @@ var axios   = require('axios');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
+    
     res.render('index');
 });
 router.get('/finalizar', function (req, res, next) {//// mexer aqui qndo arrumar as sessões

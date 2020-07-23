@@ -5,6 +5,7 @@ block teste1
     name='cidade'
     placeholder='Nome cidade'
     class="form-control"
+    value= inst ? inst.cidade : ""
     required
   )
 
@@ -14,6 +15,7 @@ block teste1
         name='cep'
         placeholder='96700-000'
         class="form-control"
+        value= inst ? inst.cep : ""
     )
 
   label(for="bairro") Bairro:
@@ -22,6 +24,7 @@ block teste1
       name='bairro'
       placeholder='Digite o bairro'
       class="form-control"
+      value= inst ? inst.bairro : ""
     )
 
   label(for="rua") rua:
@@ -30,6 +33,7 @@ block teste1
       name='rua'
       placeholder='Digite a rua'
       class="input-group-text"
+      value= inst ? inst.rua : ""
     )
 
   label(for="numero") numero:
@@ -38,4 +42,5 @@ block teste1
       name='numero'
       placeholder='Digite o numero'
       class="input-group-text"
+      value= inst ? inst.numero : ""
     )

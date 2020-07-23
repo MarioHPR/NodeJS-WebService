@@ -1,85 +1,85 @@
 extends ../layout/layout
 block content
-    -var aux = 0;
-    -var coluna;
-    -var idAux = 0;
-    h2 Lista de exame(s)
-    h4= nomeExame + "(s)"
-    div(class="row")
-      div(class="col-3")
-        div(class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical")
-          h5 Exames
-          a(class="btn btn-outline-primary badge-light nav-link active espaco" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true")= "Adicionar outro " + nomeExame
-          each item in dadosExame
-            if idAux != item.idExame
-              a(class="btn btn-outline-primary nav-link badge-light espaco" id="v-pills-tab"+item.idExame data-toggle="pill" href="#tab"+item.idExame role="tab" aria-controls="v-pills-home" aria-selected="false")="Data: " + item.dataExame
-              -idAux = item.idExame
-      div(class="col-9")
-        div(class="tab-content" id="v-pills-tabContent")
-          div(class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab")
-            block formAdExame
-              include ./formularioAdExame
+  -var aux = 0;
+  -var coluna;
+  -var idAux = 0;
+  h2 Lista de exame(s)
+  h4= nomeExame + "(s)"
+  div(class="row")
+    div(class="col-3")
+      div(class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical")
+        h5 Exames
+        a(class="btn btn-outline-primary badge-light nav-link active espaco" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true")= "Adicionar outro " + nomeExame
+        each item in dadosExame
+          if idAux != item.idExame
+            a(class="btn btn-outline-primary nav-link badge-light espaco" id="v-pills-tab"+item.idExame data-toggle="pill" href="#tab"+item.idExame role="tab" aria-controls="v-pills-home" aria-selected="false")="Data: " + item.dataExame
+            -idAux = item.idExame
+    div(class="col-9")
+      div(class="tab-content" id="v-pills-tabContent")
+        div(class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab")
+          block formAdExame
+            include ./formularioAdExame
 
-          each item in dadosExame
-            if aux != item.idExame
-              -aux = item.idExame
-              div(class="tab-pane fade" id="tab"+item.idExame role="tabpanel" aria-labelledby="v-pills-settings-tab") 
-                div(class="card card-table")
-                  div(class="card-header")
-                    div(class="tools dropdown show")
-                      span(class="icon mdi mdi-download")
-                      a(class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false")
-                        span(class="icon mdi mdi-more-vert")
-                      div(class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(20px, 25px, 0px);")
-                        a(class="dropdown-item" href="#") action
-                        a(class="dropdown-item" href="#") Another action
-                        a(class="dropdown-item" href="#") Something else here
-                        div(class="dropdown-divider")
-                        a(class="dropdown-item" href="#") Separated link
-                      div(class="title")= aux
-                div(class="card-body table-responsive")
-                  table(class="table bordaForm")
-                    thead
+        each item in dadosExame
+          if aux != item.idExame
+            -aux = item.idExame
+            div(class="tab-pane fade" id="tab"+item.idExame role="tabpanel" aria-labelledby="v-pills-settings-tab") 
+              div(class="card card-table")
+                div(class="card-header")
+                  div(class="tools dropdown show")
+                    span(class="icon mdi mdi-download")
+                    a(class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false")
+                      span(class="icon mdi mdi-more-vert")
+                    div(class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(20px, 25px, 0px);")
+                      a(class="dropdown-item" href="#") action
+                      a(class="dropdown-item" href="#") Another action
+                      a(class="dropdown-item" href="#") Something else here
+                      div(class="dropdown-divider")
+                      a(class="dropdown-item" href="#") Separated link
+                    div(class="title")= aux
+              div(class="card-body table-responsive")
+                table(class="table bordaForm")
+                  thead
+                    tr
+                      th(style="width:40%;") Instituição
+                      th(class="number") Atributo
+                      th(style="width:20%;") Valor
+                      if item.linkImage
+                        th(style="width:20%;") Imagem
+                      th(class="actions" style="width:5%;")
+                  tbody(class="no-border-x")
+                    -coluna = 0
+                    each params in dadosExame
                       tr
-                        th(style="width:40%;") Instituição
-                        th(class="number") Atributo
-                        th(style="width:20%;") Valor
-                        if item.linkImage
-                          th(style="width:20%;") Imagem
-                        th(class="actions" style="width:5%;")
-                    tbody(class="no-border-x")
-                      -coluna = 0
-                      each params in dadosExame
-                        tr
-                          if coluna == 0 
-                            td(rowspan="300")
-                              div(class="collapse" id="navbarToggleExternalContent" + aux)
-                                each locali in localidade
-                                  if item.nome == locali.nome && coluna == 0
-                                    span(class="text-muted")= "Instituição: " + locali.nome
-                                    br
-                                    span(class="text-muted")= "Cidade: " + locali.cidade
-                                    br
-                                    span(class="text-muted")= "Cep: " + locali.cep
-                                    br
-                                    span(class="text-muted")= "Bairro: " + locali.bairro
-                                    br
-                                    span(class="text-muted")= "Rua: " + locali.rua
-                                    br
-                                    span(class="text-muted")= "N°: " + locali.numero
-                              nav(id="btNavegador")
-                                  button(id='btInsti' class="btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" + aux aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação")
-                                    img(id='imgExpand' src="https://img.icons8.com/ios-glyphs/20/000000/expand-arrow.png")
-                                    span(id='spanNome')= item.nome
-                              -coluna++;
-                          if params.idExame == item.idExame
-                            if params.campo != null
-                              td=params.campo
-                              td=params.valor
-                            else
-                              td ----
-                              td ----
-                            if item.linkImage
-                              td(rowspan="300" )
-                                a(href=item.linkImage target="_blank")
-                                  img(id="imgTab" class="testess"  src=item.linkImage alt="teste")            
+                        if coluna == 0 
+                          td(rowspan="300")
+                            div(class="collapse" id="navbarToggleExternalContent" + aux)
+                              each locali in localidade
+                                if item.nome == locali.nome && coluna == 0
+                                  span(class="text-muted")= "Instituição: " + locali.nome
+                                  br
+                                  span(class="text-muted")= "Cidade: " + locali.cidade
+                                  br
+                                  span(class="text-muted")= "Cep: " + locali.cep
+                                  br
+                                  span(class="text-muted")= "Bairro: " + locali.bairro
+                                  br
+                                  span(class="text-muted")= "Rua: " + locali.rua
+                                  br
+                                  span(class="text-muted")= "N°: " + locali.numero
+                            nav(id="btNavegador")
+                                button(id='btInsti' class="btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" + aux aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação")
+                                  img(id='imgExpand' src="https://img.icons8.com/ios-glyphs/20/000000/expand-arrow.png")
+                                  span(id='spanNome')= item.nome
+                            -coluna++;
+                        if params.idExame == item.idExame
+                          if params.campo != null
+                            td=params.campo
+                            td=params.valor
+                          else
+                            td ----
+                            td ----
+                          if item.linkImage
+                            td(rowspan="300" )
+                              a(href=item.linkImage target="_blank")
+                                img(id="imgTab" class="testess"  src=item.linkImage alt="teste")            

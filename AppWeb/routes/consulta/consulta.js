@@ -11,6 +11,7 @@ router.get('/', function (req, res, next) {
             idUsuario: 1
         }
     }
+
     axios.all([
         axios.get('http://localhost:3000/consultas', parametros), 
         axios.get('http://localhost:3000/instituicao', parametros)
@@ -19,14 +20,31 @@ router.get('/', function (req, res, next) {
 
         if (respConsultas.status == 200 && respInstituicao.status == 200) {
             let data;
+            let arrayParamets = [];
+
             for (let i = 0; i < respConsultas.data.length; i++) {
                 data = respConsultas.data[i].dataConsulta;
                 data = data.substr(0, 10);
-                data = data.split('-').reverse().join('/');
+                //data = data.split('-').reverse().join('/');
                 respConsultas.data[i].dataConsulta = data;
+                arrayParamets.push({ ids: respConsultas.data[i].idInstituicao })
             }
 
-            res.render('consulta/listaConsultas', {consultas: respConsultas.data, instituicao: respInstituicao.data});
+            axios.post('http://localhost:3000/localidade/local', {
+                arrayParamets
+            }).then(function (resp) {
+                if (resp.status == 200) {
+                    console.log("@@@@@@@@@@@@")
+                    console.log("@@@@@@@@@@@@")
+                    console.log("@@@@@@@@@@@@")
+                    console.log(respConsultas.data)
+                    console.log("@@@@@@@@@@@@")
+                    console.log("@@@@@@@@@@@@")
+                    console.log("@@@@@@@@@@@@")
+
+                    res.render('consulta/listaConsultas', { consultas: respConsultas.data, instituicao: resp.data, todasInst: respInstituicao.data });
+                }
+            }).catch(error => { });
         }
 
     })).catch(error => {

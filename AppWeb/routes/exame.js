@@ -1,16 +1,18 @@
-var express = require('express');
-var router = express.Router();
-var axios = require('axios');
-var multer = require('multer');
+var express      = require('express');
+var router       = express.Router();
+var axios        = require('axios');
+var multer       = require('multer');
 var multerConfig = require('./config/multer');
 
 var FormData = require('form-data');
 var fs = require('fs');
-
-
-/* GET home page. */  
+ /*
 router.get('/', function (req, res, next) {
-    // Requisições do tipo GET
+    console.log("*****************")
+    console.log("*****************")
+    console.log("Entrou get um hahah")
+    console.log("*****************")
+    console.log("*****************")
     axios.get('http://localhost:3000/exames', {
         params: {
             id_usuario: 1
@@ -18,13 +20,17 @@ router.get('/', function (req, res, next) {
     }).then(function (response) {
         if (response.status == 200) {
             console.log(response.data);
-            res.render('usuario/exame', { exames: response.data });
+            res.render('exame/exame', { exames: response.data });
         }
     }).catch(error => { });
 });
 
 router.get('/add', function (req, res, next) {
-    // Requisições do tipo GET
+    console.log("*****************")
+    console.log("*****************")
+    console.log("Entrou get 2 hahah")
+    console.log("*****************")
+    console.log("*****************")
     axios.get('http://localhost:3000/instituicao', {
         params: {
             id_usuario: 1 
@@ -38,8 +44,11 @@ router.get('/add', function (req, res, next) {
 });
 
 router.get('/visualizacao', function (req, res, next) {
-    // Requisições do tipo GET
-    //res.render('usuario/visualizarExame', { teste: "ew", inst: "testeee", campos: "teste" });/*
+    console.log("*****************")
+    console.log("*****************")
+    console.log("Entrou get 3 hahah")
+    console.log("*****************")
+    console.log("*****************")
     axios.get('http://localhost:3000/instituicao/visu', {
         params: {
             idUsuario: 1,
@@ -74,13 +83,16 @@ router.get('/visualizacao', function (req, res, next) {
 });
 
 router.post('/', multer(multerConfig).single('file'), function (req, res) {
-    // console.log(req.file);
-    const arrayParametros = []
+    console.log("*****************")
+    console.log("*****************")
+    console.log("Entrou no post hahah")
+    console.log("*****************")
+    console.log("*****************")
+    /*const arrayParametros = []
     let aux = req.file ? req.file.path : '';
     for (let index = 0; index < (Object.keys(req.body).length - 3) / 2; index++) {
         arrayParametros.push({ A: req.body[`A${index}`], V: req.body[`V${index}`] })
     }
-    console.log(arrayParametros)
     axios.post('http://localhost:3000/exames',
         {
             nome: req.body.nome,
@@ -90,8 +102,6 @@ router.post('/', multer(multerConfig).single('file'), function (req, res) {
         }
     ).then(function (response) {
         if (response.status == 200) {
-
-            console.log("retorno", response.data.id);
             axios.post('http://localhost:3000/parametros',
                 {
                     id_exame: response.data.id,
@@ -105,7 +115,6 @@ router.post('/', multer(multerConfig).single('file'), function (req, res) {
                         }
                     }).then(function (response) {
                         if (response.status == 200) {
-                            console.log(response.data);
                             res.render('usuario/exame', { exames: response.data });
                         }
                     }).catch(error => { });
@@ -119,4 +128,31 @@ router.post('/', multer(multerConfig).single('file'), function (req, res) {
     });
 
 });
+
+router.get('/del/:id', function (req, res, next) {
+    console.log(req.params.id);
+    axios.delete('http://localhost:3000/tipoExame/', {
+        data: {
+            id: req.params.id
+        }
+    }).then(function (response) {
+        console.log(response.data); // ex.: { user: 'Your User'}
+        if (response.status == 200) {
+            axios.get('http://localhost:3000/exames', {
+                params: {
+                    id_usuario: 1
+                }
+            }).then(function (resp) {
+                if (resp.status == 200) {
+                    console.log(resp.data);
+                    res.render('exame/exame', { exames: resp.data });
+                }
+            }).catch(error => { });
+        }
+    }).catch(error => {
+        res.render('index', {
+
+        });
+    });
+});*/
 module.exports = router;

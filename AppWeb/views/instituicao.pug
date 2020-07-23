@@ -1,23 +1,17 @@
 block teste
   script(type='text/javascript' src='/js/camposExtras.js').
   div(class="modal-body")
-    h1 Cadastro instituição
-    form(class="form-signin" method='POST' action='/instituicao')
+    fieldset(id="camposInstituicao" disabled="disabled")
+      h1 Cadastro instituição
+      label(for="nomeInstituicao") Nome Instituição:
       input(
         type='text'
-        name='nome'
+        name='nomeInstituicao'
         placeholder='Digite nome da instituição'
         class="form-control"
         autofocus
+        value= inst ? inst.nome : ""
       )
       p
         block teste1
           include ./local
-      p
-        input(
-          type='submit'
-          name='cad'
-          value='cadastrar'
-          class="btn btn-lg btn-primary btn-block"
-        )
-        button(type="button" class="btn btn-secondary" data-dismiss="modal" onclick='atualizaCampo()') Fechar

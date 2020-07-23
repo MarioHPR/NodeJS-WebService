@@ -11,7 +11,7 @@ block formAdConsulta
         div(class="preencher alinhandoConteudo")
           select(name="seletor" id="seletor" class="form-control preencher" required)
             option(selected value="") Selecione a instituição
-              each inst in instituicao
+              each inst in todasInst
                 option(value=inst.id)= inst.nome
           a( id="btnExibeOcultaDiv" onclick='trocaBotao()' )
             img(id="imgAdd" src="https://img.icons8.com/ios/40/000000/plus-2-math.png" alt="adicionar instituição" title="adicionar instituição")

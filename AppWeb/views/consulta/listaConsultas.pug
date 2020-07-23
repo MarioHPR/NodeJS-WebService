@@ -6,11 +6,24 @@ block content
       div(class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical")
         h5 Consultas
         a(class="btn btn-outline-primary badge-light nav-link active espaco" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true")= "Adicionar Consulta"
-          each item in consultas
-            - //if idAux != item.idExame
-            a(class="btn btn-outline-primary nav-link badge-light espaco" id="v-pills-tab"+item.id data-toggle="pill" href="#tab"+item.diagnostico role="tab" aria-controls="v-pills-home" aria-selected="false")="Data: " + item.dataConsulta
+        each item in consultas
+          input( type="date" class="btn btn-outline-primary nav-link badge-light espaco" id="v-pills-tab"+item.id data-toggle="pill" href="#tab"+item.id role="tab" aria-controls="v-pills-home" aria-selected="false" value=item.dataConsulta readonly=true)
     div(class="col-9")
       div(class="tab-content" id="v-pills-tabContent")
-        div(class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab")
+        div(class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab")
           block formAdConsulta
             include ./formularioAddConsulta
+        each item in consultas
+          div(class="tab-pane fade" id="tab"+item.id role="tabpanel" aria-labelledby="v-pills-settings-tab") 
+            -/*div(class="card card-table")
+              div(class="card-header")
+                div(class="tools dropdown show")
+                  p action
+                  p Another action
+            -*/
+            each inst in instituicao
+              if item.idInstituicao == inst.id
+                div(class="card-body table-responsive")
+                  block form
+                    include ./formEdicaoVisualizacao
+                break

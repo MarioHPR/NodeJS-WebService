@@ -3,15 +3,16 @@ var router = express.Router();
 var app = express();
 
 var mysql = require('mysql');
-var consMysql = 'mysql://root:@localhost:3306/bancoTcc';
+var consMysql = 'mysql://root:@localhost:3306/bancoTcc2';
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-	var sql = 'SELECT nome_exame,id,id_instituicao FROM Exames WHERE id_usuario = ?;';
+
+	var sql = 'SELECT Exame.id, nome, idInstituicao, linkImage, dataExame FROM Exame INNER JOIN Instituicao ON Exame.idInstituicao =Instituicao.id  WHERE Exame.idTipoExame = ?;';
 
 	const connection = mysql.createConnection(consMysql);
 	connection.connect();
-	connection.query(sql, [req.query.id_usuario], function (error, results) {
+	connection.query(sql, [req.query.idTipoExame], function (error, results) {
 		if (error) {
 			return res.status(304).end();
 		}
@@ -21,25 +22,25 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res) {
-	console.log(req.body);
-	let usuario = [];
-	const connection = mysql.createConnection(consMysql);
+	
+	let exame = [];
+	exame.push(req.body.idInstituicao);
+	exame.push(req.body.link);
+	exame.push(req.body.dataExame);
+	exame.push(req.body.idTipoExame);
 
-	usuario.push(req.body.nome);
-	usuario.push(req.body.id_usuario);
-	usuario.push(req.body.id_instituicao);
-	usuario.push(req.body.link);
-	var sql = "INSERT INTO Exames (nome_exame,id_usuario,id_instituicao,linkImage) VALUES (?,?,?,?)";
-	connection.query(sql, usuario, function (error, result) {
+	const connection = mysql.createConnection(consMysql);
+	var sql = "INSERT INTO Exame (idInstituicao,linkImage,dataExame,idTipoExame) VALUES (?,?,?,?)";
+	connection.query(sql, exame, function (error, result) {
 		if (error) {
-			console.log(error)
+			//console.log(error)
 			return res.status(304).end();
 		}
 		let resposta = { id: result.insertId };
 		console.log(resposta);
 		return res.status(200).json(resposta);
 	});
-
+	connection.end();
 });
 
 router.delete('/:id', function (req, res, next) {
@@ -54,6 +55,7 @@ router.delete('/:id', function (req, res, next) {
 		let resposta = results[0];
 		return res.status(200).send(resposta);
 	});
+	connection.end();
 });
 
 router.put('/:id', function (req, res) {// fazer ainda tirar duvida com Prof. Carlos
@@ -71,6 +73,7 @@ router.put('/:id', function (req, res) {// fazer ainda tirar duvida com Prof. Ca
 		let resposta = results[0];
 		return res.status(200).send(resposta);
 	});
+	connection.end();
 });
 
 module.exports = router;

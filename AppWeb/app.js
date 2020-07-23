@@ -8,10 +8,12 @@ var usuarioRouter   = require('./routes/usuario');
 var indexRouter     = require('./routes/index');
 
 // novas rotas
-var consultasRouter   = require('./routes/consulta');
+var consultasRouter   = require('./routes/consulta/consulta');
 var instituicaoRouter = require('./routes/instituicao');
 var localRouter       = require('./routes/local');
 var exameRouter       = require('./routes/exame');
+
+var tipoExameRouter   = require('./routes/exame/tipoExame');
 
 var app = express();
 
@@ -33,6 +35,8 @@ app.use('/consulta', consultasRouter);
 app.use('/instituicao', instituicaoRouter);
 app.use('/local', localRouter);
 app.use('/exame', exameRouter);
+
+app.use('/tipoExame', tipoExameRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
