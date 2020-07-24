@@ -87,9 +87,10 @@ router.post('/',function (req, res, next) {
 	});
 });
 
-router.delete('/:id', function (req, res, next) {
+router.delete('/', function (req, res, next) {
+
 	let consulta = [];
-	consulta.push(req.params.id);
+	consulta.push(req.body.id);
 	const connection = mysql.createConnection(consMysql);
 	let sql = "DELETE FROM Consulta WHERE id = ?";
 	connection.query(sql, consulta, function (error, results) {

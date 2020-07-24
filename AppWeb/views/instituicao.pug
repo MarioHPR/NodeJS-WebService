@@ -2,7 +2,7 @@ block teste
   script(type='text/javascript' src='/js/camposExtras.js').
   div(class="modal-body")
     fieldset(id="camposInstituicao" disabled="disabled")
-      h1 Cadastro instituição
+      h4= item ? "Dados da instituição" : "Cadastro instituição"
       label(for="nomeInstituicao") Nome Instituição:
       input(
         type='text'

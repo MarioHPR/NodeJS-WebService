@@ -27,6 +27,7 @@ router.get('/', function (req, res, next) {
                 data = data.substr(0, 10);
                 //data = data.split('-').reverse().join('/');
                 respConsultas.data[i].dataConsulta = data;
+                respConsultas.data[i].linkImage = respConsultas.data[i].linkImage.substring(respConsultas.data[i].linkImage.indexOf("\\images"));
                 arrayParamets.push({ ids: respConsultas.data[i].idInstituicao })
             }
 
@@ -142,17 +143,15 @@ router.post('/Instituicao', multer(multerConfig).single('file'), function (req, 
 
 
 // deletar
-router.delete('/consultas/', function (req, res, next) {
+router.post('/del', function (req, res, next) {
     axios.delete('http://localhost:3000/consultas', {
         data: {
             id: req.body.id
         }
     }).then(function (response) {
         console.log(response.data); // ex.: { user: 'Your User'}
-        if (response.status == 201) {
-            res.render('index', {
-                palavra: "EXcluído com sucesso"
-            });
+        if (response.status == 200) {
+            res.redirect("/consulta")
         }
     }).catch(error => {
         res.render('index', {

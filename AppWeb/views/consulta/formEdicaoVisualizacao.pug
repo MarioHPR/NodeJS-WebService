@@ -1,5 +1,5 @@
 block form
-  fieldset(id="camposInstituicao" disabled="disabled")
+  fieldset(id="camposInstituicao"+item.id disabled="disabled")
     form( id='formAdConsultaExistente' class="form-signin bordaForm" method='POST' action='/consulta/' enctype='multipart/form-data')
 
       h4(class="espacoTop textTexto") Dados da Consulta
@@ -8,7 +8,7 @@ block form
           label(for='dataConsulta' ) Data Consulta:
           input(type="date" name='dataConsulta' class="form-control" value=item.dataConsulta)
         div( class="text-center preencher espaco")
-          label(for="seletor" class="my-1 mr-2") Instituição que realizou a consultaa
+          label(for="seletor" class="my-1 mr-2") Instituição que realizou a consulta
           div(class="preencher alinhandoConteudo")
             select(name="seletor" id="seletor" class="form-control preencher" required)
                 each iten in todasInst
@@ -16,9 +16,9 @@ block form
                       option(selected value=inst.id)= inst.nome
                   else
                       option(value=iten.id)= iten.nome
-            a( id="btnExibeOcultaDiv" onclick='trocaBotao()' )
-              img(id="imgAdd" src="https://img.icons8.com/ios/40/000000/plus-2-math.png" alt="adicionar instituição" title="adicionar instituição")
-      div
+            -//a( id="btnExibeOcultaDiv" onclick='trocaBotao()' )
+              -//img(id="imgAdd" src="https://img.icons8.com/ios/40/000000/plus-2-math.png" alt="adicionar instituição" title="adicionar instituição")
+      div(id="cadastroInst"+item.id)
         include ../instituicao
 
       div(class="text-center espacoTop")
