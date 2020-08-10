@@ -38,7 +38,7 @@ router.get('/visualizacao', function (req, res, next) {
         }
     }
     axios.all([
-        axios.get('http://localhost:3000/parametrosGerais', parametrosAxios), 
+        axios.get('http://localhost:3000/parametrosGerais', parametrosAxios),
         axios.get('http://localhost:3000/instituicao', paramInstituicao)
     ]) 
         .then(axios.spread(function (respParametrosGerais, respInstituicao) {

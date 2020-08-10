@@ -5,6 +5,9 @@ var multer  = require('multer');
 var multerConfig = require('.././config/multer');
 /* GET home page. */
 router.get('/', function (req, res, next) {
+    console.log("&&&&&&")
+    console.log("ENTROU")
+    console.log("&&&&&&")
     // Requisições do tipo GET
     let parametros = {
         params: {
@@ -25,9 +28,11 @@ router.get('/', function (req, res, next) {
             for (let i = 0; i < respConsultas.data.length; i++) {
                 data = respConsultas.data[i].dataConsulta;
                 data = data.substr(0, 10);
+                console.log(data)
                 //data = data.split('-').reverse().join('/');
                 respConsultas.data[i].dataConsulta = data;
-                respConsultas.data[i].linkImage = respConsultas.data[i].linkImage.substring(respConsultas.data[i].linkImage.indexOf("\\images"));
+                if(respConsultas.data[i].linkImage)
+                    respConsultas.data[i].linkImage = respConsultas.data[i].linkImage.substring(respConsultas.data[i].linkImage.indexOf("\\images"));
                 arrayParamets.push({ ids: respConsultas.data[i].idInstituicao })
             }
 

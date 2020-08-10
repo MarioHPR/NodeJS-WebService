@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
     sql += ' FROM CampoParametro INNER JOIN ParametroExame ON CampoParametro.id = ParametroExame.idCampo';
     sql += ' RIGHT JOIN Exame ON Exame.id = ParametroExame.idExame';
     sql += ' INNER JOIN Instituicao ON Exame.idInstituicao = Instituicao.id';
-    sql += ' INNER JOIN TipoExame ON TipoExame.id = Exame.idTipoExame WHERE TipoExame.id = ?;'
+    sql += ' INNER JOIN tipoExame ON tipoExame.id = Exame.idTipoExame WHERE tipoExame.id = ?;'
 
     const connection = mysql.createConnection(consMysql);
     connection.connect();
