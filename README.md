@@ -16,12 +16,12 @@ Passo 1.
       sudo apt -y update && sudo apt -y upgrade
 
 Passo 2.
-   *Linux - Após a atualização do sistema, instale a plataforma de aplicação Node.js(Interpretador de JavaScript). Segue três opções para realizar o procedimento.
+   * Linux - Após a atualização do sistema, instale a plataforma de aplicação Node.js(Interpretador de JavaScript). Segue três opções para realizar o procedimento.
 
       Baixando executável: 
          Segue o link: https://nodejs.org/en/download/
       Linha de comando:
-         Segue o link: https://github.com/nodesource/distributions/blob/master/README.md
+         Segue o link: [https://github.com/nodesource/distributions/blob/master/README.md]
 
    * Windows - Para usuários deste sistema operacional recomenda-se instalar o Chocolatey, que é um gerenciador de pacotes gratuito de código aberto muito semelhante ao apt do linux.
    
