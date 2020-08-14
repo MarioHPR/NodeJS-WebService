@@ -8,7 +8,8 @@
  # Front-end:
    Realizando a comunicação do usuário com o servidor, assim como "dar vida" à interface do usuário, apresentando conteúdo e interagindo diretamente com o usuário; 
 
-Para a instalar o sistema é muito simples, siga as instruções a seguir:
+# Instalação
+Para a instalar o sistema, siga as instruções a seguir:
 
 Passo 1.
    * Se estiver usando Windows ir para o passo 2.:
@@ -54,7 +55,7 @@ Passo 4.
    * Clicar no botão "Start" no serviço MYSQL Database, como mostra a figura abaixo:
       <img src="https://github.com/MarioHPR/fotos/blob/master/xampp.png?raw=true" width="600" alt="Clicar no botão 'Start' no serviço MYSQL Database">
 
-passo 5.
+Passo 5.
    (OBS) Para seguir o passo 5, deve concluir todo o passo 4.
    1. Abrir o Workbench, após isso clicar duas vezes na parte selecionada. Como mostra a imagem abaixo:
    <img src="https://github.com/MarioHPR/fotos/blob/master/teste.png?raw=true" width="600" alt="tela principal workbench">
@@ -68,10 +69,11 @@ passo 5.
       Com esses passos o banco de dados estará pronto para ser utilizado localmente.
    3. Testar o banco na própria ferramenta, se estiver funcionando seguir os proximos passos:
 
-ligar o servidor e testar o b
-
-instalar axios na pasta que contém a parte frontend "ApiWeb" no meu caso diretorio "/Projeto TCC/NodeJS-WebService/AppWeb"
-Seguir comandos do site: https://www.npmjs.com/package/axios
+Passo 6.
+   Nesta etapa vamos instalar axios, que é uma biblioteca que trabalha tanto com XMLHttpRequest quanto http do node. Axios é um cliente http que precisa ser instalada na pasta que contém frontend "ApiWeb". Sendo assim realizando a comunicação com nosso back-end.
+   Deve-se instalar está biblioteca no diretorio "/NodeJS-WebService/AppWeb" segue exemplo logo a baixo;
+      <img src="https://github.com/MarioHPR/fotos/blob/master/terminal.png?raw=true" width="600" alt="Terminal de exemplo">
+   Seguir comandos do site: https://www.npmjs.com/package/axios
 
 instalar nodemon, para  desenvolvimento (sudo su) npm install -g nodemon
 por terminais separados vá nas pastas AppWeb e API, em cada uma delas execute nodemon start para startar os dois serviços
