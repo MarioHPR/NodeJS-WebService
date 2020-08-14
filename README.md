@@ -52,8 +52,15 @@ Passo 4.
       sudo /opt/lampp/manager-linux-x64.run
 
 passo 5.
-   1. Abrir o Workbench
-   <img src="https://github.com/MarioHPR/fotos/blob/master/teste.png" width="350" alt="tela principal workbench">
+   (OBS) Para seguir o passo 5, deve concluir todo o passo 4.
+   1. Abrir o Workbench, após isso clicar duas vezes na parte selecionada. Como mostra a imagem abaixo:
+   <img src="https://github.com/MarioHPR/fotos/blob/master/teste.png?raw=true" width="600" alt="tela principal workbench">
+
+   2. Abrirá outra janela e deve clicar no botão escrito "Continue Anyway";
+   3. Copiar todo o script que está no arquivo "banc0.sql";
+      * link: https://github.com/MarioHPR/NodeJS-WebService/blob/master/API/banco/bancoTCC2.sql
+      * Colar dentro do workbench, ficando igual a imagem seguinte;
+         <img src="https://github.com/MarioHPR/fotos/blob/master/workBench.png?raw=true" width="600" alt="tela principal workbench">
 
 ligar o servidor e testar o banco na própria ferramenta, se estiver funcionando seguir os passos seguintes:
 
