@@ -70,17 +70,22 @@ Passo 5.
    3. Testar o banco na própria ferramenta, se estiver funcionando seguir os proximos passos:
 
 Passo 6.
-   Nesta etapa vamos instalar axios, que é uma biblioteca que trabalha tanto com XMLHttpRequest quanto http do node. Axios é um cliente http que precisa ser instalada na pasta que contém frontend "ApiWeb". Sendo assim realizando a comunicação com nosso back-end.
-   Deve-se instalar está biblioteca no diretorio "/NodeJS-WebService/AppWeb" segue exemplo logo a baixo;
+   instalar nodemon, para desenvolvimento. É uma ferramenta que ajuda o desenvolvimento da aplicação, reiniciando automaticamente a cada mudança no código.  
+   
+   * (sudo su) npm install -g nodemon
+
+Passo 7.
+   * Nesta etapa vamos instalar axios, que é uma biblioteca que trabalha tanto com XMLHttpRequest quanto http do node. Axios é um cliente http que precisa ser instalada na pasta que contém frontend "ApiWeb". Sendo assim realizando a comunicação com nosso back-end.
+   * Deve-se instalar está biblioteca no diretorio "/NodeJS-WebService/AppWeb" segue exemplo logo a baixo;
       <img src="https://github.com/MarioHPR/fotos/blob/master/terminal.png?raw=true" width="600" alt="Terminal de exemplo">
-   Seguir comandos do site: https://www.npmjs.com/package/axios
+   * Seguir comandos do site: https://www.npmjs.com/package/axios
 
-instalar nodemon, para  desenvolvimento (sudo su) npm install -g nodemon
-por terminais separados vá nas pastas AppWeb e API, em cada uma delas execute nodemon start para startar os dois serviços
+Passo 8.
+   * Em terminais separados vá nas pastas <b>"API"</b> e <b>"AppWeb"</b>, em cada uma delas execute o comando 
+   <i>"nodemon start"</i> para startar os dois serviços. Segue imagem abaixo de exemplo:
+      <img src="https://github.com/MarioHPR/fotos/blob/master/terminalNodemon.png?raw=true" width="600" alt="Terminais de exemplo, executando o comando nodemon start">
 
-ou
-
-Caso não tenha instalado o nodemon utilize o comando npm run start
+   * Caso não tenha instalado o nodemon utilize o comando npm run start nos dois serviços.
 
 
 
