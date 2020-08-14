@@ -9,7 +9,7 @@
    Realizando a comunicação do usuário com o servidor, assim como "dar vida" à interface do usuário, apresentando conteúdo e interagindo diretamente com o usuário; 
 
 # Instalação
-Para a instalar o sistema, siga as instruções a seguir:
+Para a instalar o sistema, primeiro baixe ou clone o projeto. Após siga as instruções a seguir:
 
 Passo 1.
    * Se estiver usando Windows ir para o passo 2.:
