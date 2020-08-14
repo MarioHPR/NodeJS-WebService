@@ -83,7 +83,7 @@ Passo 7.
 Passo 8.
    * Em terminais separados vá nas pastas <b>"API"</b> e <b>"AppWeb"</b>, em cada uma delas execute o comando 
    <i>"nodemon start"</i> para startar os dois serviços. Segue imagem abaixo de exemplo:
-      <img src="https://github.com/MarioHPR/fotos/blob/master/terminalNodemon.png?raw=true" width="600" alt="Terminais de exemplo, executando o comando nodemon start">
+   * <img src="https://github.com/MarioHPR/fotos/blob/master/terminalNodemon.png?raw=true" width="600" alt="Terminais de exemplo, executando o comando nodemon start">
 
    * Caso não tenha instalado o nodemon utilize o comando npm run start nos dois serviços.
 
