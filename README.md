@@ -51,18 +51,24 @@ Passo 4.
    * Comando linux para abrir xampp: 
       sudo /opt/lampp/manager-linux-x64.run
 
+   * Clicar no botão "Start" no serviço MYSQL Database, como mostra a figura abaixo:
+      <img src="https://github.com/MarioHPR/fotos/blob/master/xampp.png?raw=true" width="600" alt="Clicar no botão 'Start' no serviço MYSQL Database">
+
 passo 5.
    (OBS) Para seguir o passo 5, deve concluir todo o passo 4.
    1. Abrir o Workbench, após isso clicar duas vezes na parte selecionada. Como mostra a imagem abaixo:
    <img src="https://github.com/MarioHPR/fotos/blob/master/teste.png?raw=true" width="600" alt="tela principal workbench">
 
-   2. Abrirá outra janela e deve clicar no botão escrito "Continue Anyway";
-   3. Copiar todo o script que está no arquivo "banc0.sql";
-      * link: https://github.com/MarioHPR/NodeJS-WebService/blob/master/API/banco/bancoTCC2.sql
+   1. Abrirá outra janela e deve clicar no botão escrito "Continue Anyway";
+   2. Copiar todo o script que está no arquivo "banc0.sql";
+      * Link: https://github.com/MarioHPR/NodeJS-WebService/blob/master/API/banco/bancoTCC2.sql
       * Colar dentro do workbench, ficando igual a imagem seguinte;
-         <img src="https://github.com/MarioHPR/fotos/blob/master/workBench.png?raw=true" width="600" alt="tela principal workbench">
+         <img src="https://github.com/MarioHPR/fotos/blob/master/workBench.png?raw=true" width="600" alt="tela para colar script do banco">
+      * Como mostra na imagem acima clicar no botão assinalado em vermelho.
+      Com esses passos o banco de dados estará pronto para ser utilizado localmente.
+   3. Testar o banco na própria ferramenta, se estiver funcionando seguir os proximos passos:
 
-ligar o servidor e testar o banco na própria ferramenta, se estiver funcionando seguir os passos seguintes:
+ligar o servidor e testar o b
 
 instalar axios na pasta que contém a parte frontend "ApiWeb" no meu caso diretorio "/Projeto TCC/NodeJS-WebService/AppWeb"
 Seguir comandos do site: https://www.npmjs.com/package/axios
